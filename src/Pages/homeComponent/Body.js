@@ -2,6 +2,9 @@ import React, { useState, useRef } from "react";
 import "../Css/home.css";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import Data from "../../jsonFile/data.json";
+import Collection from "../../jsonFile/collection.json";
+import {  BsFillCartFill } from "react-icons/bs";
+import { MdFavoriteBorder } from "react-icons/md";
 
 const Body = () => {
   const [slideIndex, setSlideIndex] = useState(1);
@@ -48,6 +51,15 @@ const Body = () => {
 
   const moveDot = (index) => {
     setSlideIndex(index);
+  };
+
+  // add to Cart list function
+  const addToCarList = () => {
+    alert("you clicked on add to cart list");
+  };
+  // add to Favorite list function
+  const addToFavList = () => {
+    alert("you clicked on add to Fav list");
   };
 
   return (
@@ -106,35 +118,55 @@ const Body = () => {
       </div>
       {/* header image slider */}
       {/* Main Body part start here */}
-      <main>
-        <h1>some dummy text</h1>
-        <h1>some dummy text</h1>
-        <h1>some dummy text</h1>
-        <h1>some dummy text</h1>
-        <h1>some dummy text</h1>
-        <h1>some dummy text</h1>
-        <h1>some dummy text</h1>
-        <h1>some dummy text</h1>
-        <h1>some dummy text</h1>
-        <h1>some dummy text</h1>
-        <h1>some dummy text</h1>
-        <h1>some dummy text</h1>
-        <h1>some dummy text</h1>
-        <h1>some dummy text</h1>
-        <h1>some dummy text</h1>
-        <h1>some dummy text</h1>
-        <h1>some dummy text</h1>
-        <h1>some dummy text</h1>
-        <h1>some dummy text</h1>
-        <h1>some dummy text</h1>
-        <h1>some dummy text</h1>
-        <h1>some dummy text</h1>
-        <h1>some dummy text</h1>
-        <h1>some dummy text</h1>
-        <h1>some dummy text</h1>
-        <h1>some dummy text</h1>
-        <h1>some dummy text</h1>
-        <h1>some dummy text</h1>
+      <main style={{ position: "relation", padding: "30px 0 0 0" }}>
+        {/* Men section */}
+        <section className="section-style">
+          <div className="men-initial-container">
+            {Collection[0].map((item, index) => {
+              return (
+                <div className="men-containers">
+                  <div className="men-container">
+                    <div className="image-icon">
+                      <img
+                        src={item.image}
+                        alt="image"
+                        className="men-image-style"
+                      />
+                      <div className="icon-style">
+                        <BsFillCartFill
+                          color="#719ece"
+                          size={28}
+                          className="cart-icon"
+                          onClick={addToCarList}
+                        />
+                        <MdFavoriteBorder
+                          color="#719ece"
+                          size={30}
+                          className="fav-icon"
+                          onClick={addToFavList}
+                        />
+                      </div>
+                    </div>
+
+                    <h3>{item.description}</h3>
+                    <p>Rating: {item.rating}</p>
+                    <p>Price: {item.price}</p>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <button className="Button">Shop now</button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+        {/* Men section */}
       </main>
       {/* Main Body part start here */}
     </div>

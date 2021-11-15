@@ -1,10 +1,6 @@
-
 import './App.css';
-// import { FaBeer } from "react-icons/fa";
 import Dashboard from "./Pages/Dashboard";
 import { Routes, Route, Link } from "react-router-dom";
-
-// library.add(fab, faCheckSquare, faCoffee);
 
 const About=()=>{
   return(

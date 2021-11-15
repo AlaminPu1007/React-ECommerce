@@ -1,0 +1,98 @@
+[
+  [
+    {
+      "id": "1",
+      "description": "Foreign Hoodie | Collection 2021",
+      "price": "$150",
+      "rating": "4.5",
+      "image": "/image/men/first_(1).jpg"
+    },
+    {
+      "id": "2",
+      "description": "Foreign Hoodie | Collection 2021",
+      "price": "$150",
+      "rating": "4.5",
+      "image": "/image/men/first_(2).jpg"
+    },
+    {
+      "id": "3",
+      "description": "Foreign Hoodie | Collection 2021",
+      "price": "$150",
+      "rating": "4.5",
+      "image": "/image/men/first_(3).jpg"
+    },
+    {
+      "id": "4",
+      "description": "Foreign Hoodie | Collection 2021",
+      "price": "$150",
+      "rating": "4.5",
+      "image": "/image/men/first_(4).jpg"
+    },
+    {
+      "id": "5",
+      "description": "Foreign Hoodie | Collection 2021",
+      "price": "$150",
+      "rating": "4.5",
+      "image": "/image/men/first_(5).jpg"
+    },
+    {
+      "id": "6",
+      "description": "Foreign Hoodie | Collection 2021",
+      "price": "$150",
+      "rating": "4.5",
+      "image": "/image/men/first_(6).jpg"
+    },
+    {
+      "id": "7",
+      "description": "Foreign Hoodie | Collection 2021",
+      "price": "$150",
+      "rating": "4.5",
+      "image": "/image/men/first_(7).jpg"
+    },
+    {
+      "id": "8",
+      "description": "Foreign Hoodie | Collection 2021",
+      "price": "$150",
+      "rating": "4.5",
+      "image": "/image/men/first_(8).jpg"
+    }
+  ],
+
+  [
+    {
+      "id": "1",
+      "description": "Foreign Hoodie | Collection 2021",
+      "price": "$150",
+      "rating": "4.5",
+      "image": "/image/women/first_(1).jpg"
+    },
+    {
+      "id": "2",
+      "description": "Foreign Hoodie | Collection 2021",
+      "price": "$150",
+      "rating": "4.5",
+      "image": "/image/women/first_(2).jpg"
+    },
+    {
+      "id": "3",
+      "description": "Foreign Hoodie | Collection 2021",
+      "price": "$150",
+      "rating": "4.5",
+      "image": "/image/women/first_(3).jpg"
+    },
+    {
+      "id": "4",
+      "description": "Foreign Hoodie | Collection 2021",
+      "price": "$150",
+      "rating": "4.5",
+      "image": "/image/women/first_(4).jpg"
+    },
+    {
+      "id": "5",
+      "description": "Foreign Hoodie | Collection 2021",
+      "price": "$150",
+      "rating": "4.5",
+      "image": "/image/women/first_(5).jpg"
+    }
+  ]
+]
