@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "type": "Men new collection 2021",
+    "button_text": "shop",
+    "arrivals": "New Arrivals",
+    "image": "/image/first_(2).jpg"
+  },
+  {
+    "id": "2",
+    "type": "Wo-men new collection 2021",
+    "button_text": "shop",
+    "arrivals": "New Arrivals",
+    "image": "/image/first_(3).jpg"
+  },
+  {
+    "id": "3",
+    "type": "Child new collection 2021",
+    "button_text": "shop",
+    "arrivals": "New Arrivals",
+    "image": "/image/first_(1).jpg"
+  }
+]
