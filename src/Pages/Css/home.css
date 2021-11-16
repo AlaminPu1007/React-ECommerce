@@ -189,7 +189,7 @@ nav .Icons-view .search-icon {
   width: 100%;
   position: absolute;
   opacity: 1;
-  transition: opacity ease-in-out 0.8s;
+  transition: opacity ease-in-out 1s;
 }
 
 .text-div {
@@ -228,6 +228,7 @@ nav .Icons-view .search-icon {
   text-align: center;
   border-radius: 25px;
   font-size: 16px;
+  font-weight: 500;
   margin-top: 10px;
   cursor: pointer;
 }
@@ -311,7 +312,17 @@ men image div styles
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
+.section-style .category-title{
+  width: 90%;
+  padding: 10px 0 30px 0;
+}
+
+.section-style .category-title h1{
+  color: #6a6867;
+}
+
 .men-initial-container {
   width: 90%;
   display: grid;
@@ -356,7 +367,7 @@ men image div styles
   display: flex;
   justify-content: space-between;
   align-items: center;
-  bottom: 12%;
+  bottom: 2%;
   opacity: 0;
   transform: translateY(2em);
   transition: 0s 3s;
@@ -372,3 +383,15 @@ men image div styles
   transform: translateY(0%);
   transition: 1s;
 }
+
+.shop-now-button{
+  margin: 30px;
+}
+
+.more-button{
+  padding: 15px 80px;
+  background-image: linear-gradient(to right, rgb(58, 187, 187) , rgb(115, 218, 161));
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
