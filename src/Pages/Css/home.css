@@ -314,12 +314,12 @@ men image div styles
   justify-content: center;
   flex-direction: column;
 }
-.section-style .category-title{
+.section-style .category-title {
   width: 90%;
   padding: 10px 0 30px 0;
 }
 
-.section-style .category-title h1{
+.section-style .category-title h1 {
   color: #6a6867;
 }
 
@@ -332,6 +332,13 @@ men image div styles
 }
 .men-containers {
   position: relative;
+  border: 1px solid #b9b6b4;
+  border-radius: 10px;
+}
+
+.men-containers:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: box-shadow 0.3s ease-in-out;
 }
 .men-container {
   position: relative;
@@ -343,6 +350,7 @@ men image div styles
   height: 450px;
   overflow: hidden;
   transition: transform 0.2s;
+  border-radius: 10px;
 }
 
 .men-container .men-image-style {
@@ -354,10 +362,11 @@ men image div styles
 }
 
 .men-container img:hover {
-  -ms-transform: scale(1.2); 
-  -webkit-transform: scale(1.2);  
-   transform: scale(1.2);
-  overflow: hidden; 
+  -ms-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+  overflow: hidden;
+  border-radius: 10px;
 }
 
 .image-icon .icon-style {
@@ -373,25 +382,96 @@ men image div styles
   transition: 0s 3s;
 }
 
-.icon-style .cart-icon, .fav-icon{
+.icon-style .cart-icon,
+.fav-icon {
   cursor: pointer;
 }
 
 .men-image-style:hover + .icon-style {
   visibility: visible;
-  opacity: 1 ;
+  opacity: 1;
   transform: translateY(0%);
   transition: 1s;
 }
 
-.shop-now-button{
+.shop-now-button {
   margin: 30px;
 }
 
-.more-button{
+.more-button {
   padding: 15px 80px;
-  background-image: linear-gradient(to right, rgb(58, 187, 187) , rgb(115, 218, 161));
+  background-image: linear-gradient(
+    to right,
+    rgb(58, 187, 187),
+    rgb(115, 218, 161)
+  );
   font-weight: 700;
-  margin-bottom: 30px;
+  margin: 50px 0 20px 0;
 }
 
+.men-container h3 {
+  margin-top: 20px;
+}
+.men-container h3,
+p {
+  color: #413e3c;
+  margin-left: 10px;
+}
+/* 
+Footer Styles
+*/
+
+footer {
+  padding: 50px 0;
+  width: 100%;
+  margin: auto;
+  height: auto;
+  background-color: #513992;
+}
+
+footer section .footer-sections {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 30px;
+  width: 80%;
+  margin: auto;
+}
+
+footer section .footer-sections .footer-section h1 {
+  color: #fff;
+  /* color: #444342; */
+  padding-bottom: 20px;
+}
+
+footer section .footer-sections .footer-section a {
+  text-decoration: none;
+  align-items: center;
+  display: flex;
+  margin: 10px 0;
+}
+
+footer section .footer-sections .footer-section p {
+  color: #fff;
+}
+
+footer section .footer-sections .footer-section a .footer-icon {
+  /* color: #669ad3; */
+  color: #fff;
+}
+
+/* pagination style on mens page */
+main section .pagination-icon {
+  border: 1px solid #666360;
+  color: #3d3734;
+}
+
+main section .pagination-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 90%;
+}
+
+main section .pagination-container h4 {
+  color: #69625d;
+}

@@ -1,11 +1,19 @@
 import './App.css';
 import Dashboard from "./Pages/Dashboard";
-import { Routes, Route, Link } from "react-router-dom";
+// category pages
+import Mens from './Pages/category/Mens';
+import { Routes, Route } from "react-router-dom";
+//
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const About=()=>{
-  return(
+  const notify = () => toast("Wow so easy !");
+  
+  return (
     <div>
-      about screen!
+      <button onClick={notify}>Notify !</button>
+      <ToastContainer />
     </div>
   );
 };
@@ -16,7 +24,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        <Route path="about" element={<About />} />
+        <Route path="/category" element={<Mens />} />
       </Routes>
     </div>
   );

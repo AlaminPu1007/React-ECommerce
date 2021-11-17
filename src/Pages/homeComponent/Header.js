@@ -5,6 +5,7 @@ import { BsSearch, BsFillCartFill } from "react-icons/bs";
 import { MdFavoriteBorder } from "react-icons/md";
 import { FiMenu } from "react-icons/fi";
 import { AiFillCaretDown } from "react-icons/ai";
+import { VscAccount } from "react-icons/vsc";
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -50,12 +51,12 @@ const Header = () => {
                 >
                   Home
                 </Link>
-                <AiFillCaretDown
+                {/* <AiFillCaretDown
                   color={liTextColor === 1 ? "#888dc4" : "#6a6867"}
-                />
+                /> */}
               </div>
 
-              <ul className="sub-menu">
+              {/* <ul className="sub-menu">
                 <li>
                   <Link to="/">Sub Item 1</Link>
                 </li>
@@ -68,20 +69,20 @@ const Header = () => {
                 <li>
                   <Link to="/">Sub Item 4</Link>
                 </li>
-              </ul>
+              </ul> */}
             </li>
             <li className="sub-menu-parent">
               <div style={{ display: "flex", alignItems: "center" }}>
                 <Link
                   onClick={() => LiTextColorFunction(2)}
-                  to="/"
+                  to="category"
                   style={
                     liTextColor === 2
                       ? { color: "#888dc4" }
                       : { color: "#6a6867" }
                   }
                 >
-                  Shop
+                  Category
                 </Link>
                 <AiFillCaretDown
                   color={liTextColor === 2 ? "#888dc4" : "#6a6867"}
@@ -89,22 +90,13 @@ const Header = () => {
               </div>
               <ul className="sub-menu">
                 <li>
-                  <Link to="/">Sub Item 1</Link>
+                  <Link to="/category">Men's</Link>
                 </li>
                 <li>
-                  <Link to="/">Sub Item 2</Link>
+                  <Link to="/">Wo Men's</Link>
                 </li>
                 <li>
-                  <Link to="/">Sub Item 3</Link>
-                </li>
-                <li>
-                  <Link to="/">Sub Item 4</Link>
-                </li>
-                <li>
-                  <Link to="/">Sub Item 5</Link>
-                </li>
-                <li>
-                  <Link to="/">Sub Item 6</Link>
+                  <Link to="/">Child</Link>
                 </li>
               </ul>
             </li>
@@ -205,12 +197,17 @@ const Header = () => {
 
         <div className="icon">
           <Link className="icon-view" to="/">
-            <BsFillCartFill color="#33342f" size={18} />
+            <VscAccount color="#33342f" size={20} />
           </Link>
         </div>
         <div className="icon">
           <Link className="icon-view" to="/">
-            <MdFavoriteBorder color="#33342f" size={20} />
+            <BsFillCartFill color="#33342f" size={20} />
+          </Link>
+        </div>
+        <div className="icon">
+          <Link className="icon-view" to="/">
+            <MdFavoriteBorder color="#33342f" size={22} />
           </Link>
         </div>
       </div>

@@ -2,16 +2,20 @@ import React, { useState, useRef } from "react";
 import "../Css/home.css";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import Data from "../../jsonFile/data.json";
-import Collection from "../../jsonFile/collection.json";
 import DemoCollection from "../../jsonFile/DemoCollection.json";
 import { BsFillCartFill } from "react-icons/bs";
-import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
+import { MdFavorite } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+//define toastify in react
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Body = () => {
+  const navigate = useNavigate();
   const [slideIndex, setSlideIndex] = useState(1);
 
   // making an auto play slider
-  const timeoutRef = React.useRef(null);
+  const timeoutRef = useRef(null);
 
   function resetTimeout() {
     if (timeoutRef.current) {
@@ -54,13 +58,13 @@ const Body = () => {
     setSlideIndex(index);
   };
 
-  // add to Cart list function
-  const addToCarList = () => {
-    alert("you clicked on add to cart list");
-  };
-  // add to Favorite list function
-  const addToFavList = () => {
-    alert("you clicked on add to Fav list");
+  // toastify message
+  const cartNotify = () => toast("has been added on your cart list");
+  const favNotify = () => toast("has been added on your favorite list");
+
+  // Men page navigation
+  const NavigateToMen = () => {
+    return navigate("/category");
   };
 
   // find men/wo-emn/child first element index position
@@ -94,6 +98,8 @@ const Body = () => {
 
   return (
     <div style={{ paddingBottom: "20px", position: "relative" }}>
+      {/* define toastify at initial point */}
+      <ToastContainer />
       {/* header image slider */}
       <div style={{ position: "relative" }}>
         {/* Sliding an image with text */}
@@ -115,7 +121,11 @@ const Body = () => {
                 </div>
 
                 <div className="image-div">
-                  <img src={item.image} className="men-image" />
+                  <img
+                    src={item.image}
+                    className="men-image"
+                    alt="men-images"
+                  />
                 </div>
               </div>
             );
@@ -171,13 +181,13 @@ const Body = () => {
                             color="#487ab1"
                             size={28}
                             className="cart-icon"
-                            onClick={addToCarList}
+                            onClick={cartNotify}
                           />
                           <MdFavorite
                             color="#487ab1"
                             size={30}
                             className="fav-icon"
-                            onClick={addToFavList}
+                            onClick={favNotify}
                           />
                         </div>
                       </div>
@@ -209,7 +219,9 @@ const Body = () => {
               alignItems: "center",
             }}
           >
-            <button className="Button more-button">more items</button>
+            <button onClick={NavigateToMen} className="Button more-button">
+              more items
+            </button>
           </div>
         </section>
         {/* Men section */}
@@ -235,13 +247,13 @@ const Body = () => {
                             color="#487ab1"
                             size={28}
                             className="cart-icon"
-                            onClick={addToCarList}
+                            onClick={cartNotify}
                           />
                           <MdFavorite
                             color="#487ab1"
                             size={30}
                             className="fav-icon"
-                            onClick={addToFavList}
+                            onClick={favNotify}
                           />
                         </div>
                       </div>
@@ -299,13 +311,13 @@ const Body = () => {
                             color="#487ab1"
                             size={28}
                             className="cart-icon"
-                            onClick={addToCarList}
+                            onClick={cartNotify}
                           />
                           <MdFavorite
                             color="#487ab1"
                             size={30}
                             className="fav-icon"
-                            onClick={addToFavList}
+                            onClick={favNotify}
                           />
                         </div>
                       </div>

@@ -1,0 +1,157 @@
+import React, { useEffect, useState } from "react";
+import DemoCollection from "../../jsonFile/DemoCollection.json";
+import Header from "../homeComponent/Header";
+import Footer from "../homeComponent/Footer";
+import { BsFillCartFill } from "react-icons/bs";
+import { MdFavorite } from "react-icons/md";
+import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
+import "../Css/home.css";
+//define toastify in react
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+const Mens = () => {
+  // add to Cart list function
+  const addToCarList = () => {
+    toast("has been added on your cart list");
+  };
+  // add to Favorite list function
+  const addToFavList = () => {
+    toast("has been added on your favorite list");
+  };
+
+  ///pagination useState
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postPerPage, setPostPerPage] = useState(6);
+
+  const indexOfLastPost = currentPage * postPerPage;
+  const indexOfFirstPost = indexOfLastPost - postPerPage;
+
+  const menFilterData = [];
+  for (var i = 0; i < DemoCollection.length; i++) {
+    if (DemoCollection[i].category === "men") {
+      menFilterData.push(DemoCollection[i]);
+    }
+  }
+
+  ///this is the array need to be render
+  const currentPosts = menFilterData
+    ? menFilterData.slice(indexOfFirstPost, indexOfLastPost)
+    : 0;
+
+  ///start pagination screen here
+  const totalPosts = menFilterData.length;
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(totalPosts / postPerPage); i++) {
+    pageNumbers.push(i);
+  }
+  const [pageLength, setPagelength] = useState(pageNumbers.length);
+
+  useEffect(() => {
+    setPagelength(pageNumbers.length);
+  }, [pageNumbers.length]);
+
+  const CounterFunction = (type) => {
+    setPagelength(pageNumbers.length);
+    if (type === "Increase") {
+      if (currentPage >= 1 && currentPage < pageNumbers.length) {
+        return setCurrentPage(currentPage + 1);
+      }
+    } else if (type === "decrease") {
+      if (currentPage > 1 && currentPage <= pageNumbers.length) {
+        return setCurrentPage(currentPage - 1);
+      }
+    }
+  };
+
+  return (
+    <div>
+      {/* added tesify toast */}
+      <ToastContainer />
+      {/* added tesify toast */}
+      {/* Header Area */}
+      <Header />
+      {/* Header Area */}
+      <main style={{ paddingBottom: "30px" }}>
+        <section className="section-style">
+          <div className="category-title">
+            <h1>Men Collection</h1>
+          </div>
+          <div className="men-initial-container">
+            {currentPosts.map((item, index) => {
+              return item.category === "men" ? (
+                <div className="men-containers">
+                  <div className="men-container">
+                    <div className="image-icon">
+                      <img
+                        src={item.image}
+                        alt="image"
+                        className="men-image-style"
+                      />
+                      <div className="icon-style">
+                        <BsFillCartFill
+                          color="#487ab1"
+                          size={28}
+                          className="cart-icon"
+                          onClick={addToCarList}
+                        />
+                        <MdFavorite
+                          color="#487ab1"
+                          size={30}
+                          className="fav-icon"
+                          onClick={addToFavList}
+                        />
+                      </div>
+                    </div>
+
+                    <h3>{item.description}</h3>
+                    <p>Rating: {item.rating}</p>
+                    <p>Price: {item.price}</p>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <button className="Button shop-now-button">
+                        Shop now
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ) : null;
+            })}
+          </div>
+          <div className="pagination-container">
+            <AiOutlineLeft
+              size={25}
+              style={{ marginRight: "10px" }}
+              onClick={() => {
+                CounterFunction("decrease");
+              }}
+              className="pagination-icon"
+            />
+            <h4>
+              {currentPage} of {pageLength}
+            </h4>
+            <AiOutlineRight
+              className="pagination-icon"
+              style={{ marginLeft: "10px" }}
+              size={25}
+              onClick={() => {
+                CounterFunction("Increase");
+              }}
+            />
+            <p>{postPerPage}</p>
+          </div>
+        </section>
+      </main>
+      {/* Footer Area */}
+      <Footer />
+      {/* Footer Area */}
+    </div>
+  );
+};
+
+export default Mens;
