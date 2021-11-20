@@ -50,15 +50,15 @@ const Footer = () => {
           </div>
           <div className="footer-section">
             <h1>My Account</h1>
-            <Link to="/">
+            <Link to="/login">
               <VscAccount size={22} className="footer-icon" />
               <p>Login</p>
             </Link>
-            <Link to="/">
+            <Link to="/register">
               <BsPersonPlus size={25} className="footer-icon" />
               <p>Register a account</p>
             </Link>
-            <Link to="/">
+            <Link to="/forget">
               <AiFillUnlock size={25} className="footer-icon" />
               <p>Forget password</p>
             </Link>

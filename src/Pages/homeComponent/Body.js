@@ -64,7 +64,15 @@ const Body = () => {
 
   // Men page navigation
   const NavigateToMen = () => {
-    return navigate("/category");
+    return navigate("/men");
+  };
+  // WoMen page navigation
+  const NavigateToWoMen = () => {
+    return navigate("/wo-men");
+  };
+  // Child page navigation
+  const NavigateToChild = () => {
+    return navigate("/child");
   };
 
   // find men/wo-emn/child first element index position
@@ -96,6 +104,11 @@ const Body = () => {
     ? DemoCollection.findIndex((i) => i.id === Child.id)
     : 0;
 
+  // Header Navigation function
+  const HeaderNavigation = (item) => {
+    return navigate(item);
+  };
+
   return (
     <div style={{ paddingBottom: "20px", position: "relative" }}>
       {/* define toastify at initial point */}
@@ -116,7 +129,12 @@ const Body = () => {
                   <div className="animation-text-div">
                     <h3>{item.type}</h3>
                     <h1 style={{ margin: "5px 0" }}>{item.arrivals}</h1>
-                    <button className="Button">{item.button_text}</button>
+                    <button
+                      onClick={() => HeaderNavigation(item.navigation_link)}
+                      className="Button"
+                    >
+                      {item.button_text}
+                    </button>
                   </div>
                 </div>
 
@@ -129,7 +147,7 @@ const Body = () => {
                 </div>
               </div>
             );
-          }).reverse()}
+          })}
         </div>
         {/* Sliding an image with text */}
         {/* next / previous button icon */}
@@ -168,7 +186,7 @@ const Body = () => {
             {DemoCollection.map((item, index) => {
               return item.category === "men" ? (
                 index < menFirstIndex + 6 ? (
-                  <div className="men-containers">
+                  <div key={item.id} className="men-containers">
                     <div className="men-container">
                       <div className="image-icon">
                         <img
@@ -234,7 +252,7 @@ const Body = () => {
             {DemoCollection.map((item, index) => {
               return item.category === "wo-men" ? (
                 index < woMenFirstIndex + 6 ? (
-                  <div className="men-containers">
+                  <div key={item.id} className="men-containers">
                     <div className="men-container">
                       <div className="image-icon">
                         <img
@@ -285,7 +303,7 @@ const Body = () => {
               alignItems: "center",
             }}
           >
-            <button className="Button more-button">more items</button>
+            <button onClick={NavigateToWoMen} className="Button more-button">more items</button>
           </div>
         </section>
         {/* Wo-Men section */}
@@ -298,7 +316,7 @@ const Body = () => {
             {DemoCollection.map((item, index) => {
               return item.category === "child" ? (
                 index < childFirstIndex + 6 ? (
-                  <div className="men-containers">
+                  <div key={item.id} className="men-containers">
                     <div className="men-container">
                       <div className="image-icon">
                         <img
@@ -349,7 +367,7 @@ const Body = () => {
               alignItems: "center",
             }}
           >
-            <button className="Button more-button">more items</button>
+            <button onClick={NavigateToChild} className="Button more-button">more items</button>
           </div>
         </section>
         {/* Child section */}

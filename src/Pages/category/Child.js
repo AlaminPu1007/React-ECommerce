@@ -10,7 +10,7 @@ import "../Css/home.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Mens = () => {
+const Child = () => {
   // add to Cart list function
   const addToCarList = () => {
     toast("has been added on your cart list");
@@ -29,7 +29,7 @@ const Mens = () => {
 
   const menFilterData = [];
   for (var i = 0; i < DemoCollection.length; i++) {
-    if (DemoCollection[i].category === "men") {
+    if (DemoCollection[i].category === "child") {
       menFilterData.push(DemoCollection[i]);
     }
   }
@@ -79,7 +79,7 @@ const Mens = () => {
           </div>
           <div className="men-initial-container">
             {currentPosts.map((item, index) => {
-              return item.category === "men" ? (
+              return item.category === "child" ? (
                 <div className="men-containers">
                   <div className="men-container">
                     <div className="image-icon">
@@ -126,7 +126,7 @@ const Mens = () => {
           <div className="pagination-container">
             <AiOutlineLeft
               size={25}
-              style={{ marginRight: "10px", }}
+              style={{ marginRight: "10px" }}
               onClick={() => {
                 CounterFunction("decrease");
               }}
@@ -153,4 +153,4 @@ const Mens = () => {
   );
 };
 
-export default Mens;
+export default Child;

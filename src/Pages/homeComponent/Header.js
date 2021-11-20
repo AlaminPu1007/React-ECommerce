@@ -27,12 +27,12 @@ const Header = () => {
         </div>
         {/* Drawer navigation */}
         {/* logo */}
-        <div className="logo-title">
+        <Link to="/" className="logo-title">
           <span style={{ fontWeight: "bold", color: "#1a1a18" }}>
             E-Commerce
           </span>{" "}
           <span style={{ color: "#b2b0b0" }}>Templates</span>
-        </div>
+        </Link>
 
         {/* logo */}
         {/* Menu  */}
@@ -40,15 +40,7 @@ const Header = () => {
           <ul>
             <li className="sub-menu-parent">
               <div style={{ display: "flex", alignItems: "center" }}>
-                <Link
-                  onClick={() => LiTextColorFunction(1)}
-                  to="/"
-                  style={
-                    liTextColor === 1
-                      ? { color: "#888dc4" }
-                      : { color: "#6a6867" }
-                  }
-                >
+                <Link onClick={() => LiTextColorFunction(1)} to="/">
                   Home
                 </Link>
                 {/* <AiFillCaretDown
@@ -73,15 +65,7 @@ const Header = () => {
             </li>
             <li className="sub-menu-parent">
               <div style={{ display: "flex", alignItems: "center" }}>
-                <Link
-                  onClick={() => LiTextColorFunction(2)}
-                  to="category"
-                  style={
-                    liTextColor === 2
-                      ? { color: "#888dc4" }
-                      : { color: "#6a6867" }
-                  }
-                >
+                <Link onClick={() => LiTextColorFunction(2)} to="/men">
                   Category
                 </Link>
                 <AiFillCaretDown
@@ -90,27 +74,19 @@ const Header = () => {
               </div>
               <ul className="sub-menu">
                 <li>
-                  <Link to="/category">Men's</Link>
+                  <Link to="/men">Men's</Link>
                 </li>
                 <li>
-                  <Link to="/">Wo Men's</Link>
+                  <Link to="/wo-men">Wo Men's</Link>
                 </li>
                 <li>
-                  <Link to="/">Child</Link>
+                  <Link to="/child">Child</Link>
                 </li>
               </ul>
             </li>
             <li className="sub-menu-parent">
               <div style={{ display: "flex", alignItems: "center" }}>
-                <Link
-                  onClick={() => LiTextColorFunction(3)}
-                  to="/"
-                  style={
-                    liTextColor === 3
-                      ? { color: "#888dc4" }
-                      : { color: "#6a6867" }
-                  }
-                >
+                <Link onClick={() => LiTextColorFunction(3)} to="/">
                   Features
                 </Link>
                 <AiFillCaretDown
@@ -128,15 +104,7 @@ const Header = () => {
             </li>
             <li className="sub-menu-parent">
               <div style={{ display: "flex", alignItems: "center" }}>
-                <Link
-                  onClick={() => LiTextColorFunction(4)}
-                  to="/"
-                  style={
-                    liTextColor === 4
-                      ? { color: "#888dc4" }
-                      : { color: "#6a6867" }
-                  }
-                >
+                <Link onClick={() => LiTextColorFunction(4)} to="/">
                   Blog
                 </Link>
                 {/* <AiFillCaretDown
@@ -146,15 +114,7 @@ const Header = () => {
             </li>
             <li className="sub-menu-parent">
               <div style={{ display: "flex", alignItems: "center" }}>
-                <Link
-                  onClick={() => LiTextColorFunction(5)}
-                  to="/about"
-                  style={
-                    liTextColor === 5
-                      ? { color: "#888dc4" }
-                      : { color: "#6a6867" }
-                  }
-                >
+                <Link onClick={() => LiTextColorFunction(5)} to="/about">
                   About
                 </Link>
                 {/* <AiFillCaretDown
@@ -164,15 +124,7 @@ const Header = () => {
             </li>
             <li className="sub-menu-parent">
               <div style={{ display: "flex", alignItems: "center" }}>
-                <Link
-                  onClick={() => LiTextColorFunction(6)}
-                  to="/"
-                  style={
-                    liTextColor === 6
-                      ? { color: "#888dc4" }
-                      : { color: "#6a6867" }
-                  }
-                >
+                <Link onClick={() => LiTextColorFunction(6)} to="/">
                   Contact
                 </Link>
                 {/* <AiFillCaretDown
@@ -196,18 +148,18 @@ const Header = () => {
         </div>
 
         <div className="icon">
-          <Link className="icon-view" to="/">
-            <VscAccount color="#33342f" size={20} />
+          <Link className="icon-view" to="/login">
+            <VscAccount size={20} className="menu-icon" />
           </Link>
         </div>
         <div className="icon">
-          <Link className="icon-view" to="/">
-            <BsFillCartFill color="#33342f" size={20} />
+          <Link className="icon-view" to="/cart-list">
+            <BsFillCartFill size={20} className="menu-icon" />
           </Link>
         </div>
         <div className="icon">
-          <Link className="icon-view" to="/">
-            <MdFavoriteBorder color="#33342f" size={22} />
+          <Link className="icon-view" to="/favorite-list">
+            <MdFavoriteBorder size={22} className="menu-icon" />
           </Link>
         </div>
       </div>

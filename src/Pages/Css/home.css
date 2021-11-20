@@ -23,6 +23,19 @@ nav ul {
 nav ul li {
   margin: 0 5px;
   list-style-type: none;
+  border-bottom: 2px solid transparent;
+}
+
+nav ul li:hover {
+  border-bottom: 2px solid #888dc4;
+}
+
+nav ul li a {
+  color: #6a6867;
+}
+
+nav ul li:hover a {
+  color: #888dc4;
 }
 
 nav a:active {
@@ -66,7 +79,6 @@ nav .logo-menu .logo-title {
   padding: 0 50px;
   font-size: 20px;
   font-weight: 700px;
-  /* text-align: center; */
 }
 
 nav .Icons-view {
@@ -81,6 +93,14 @@ nav .Icons-view .icon {
 
 nav .Icons-view .icon-view {
   padding: 5px;
+}
+
+nav .menu-icon:hover {
+  color: #6d6d6d;
+}
+
+nav .menu-icon:hover {
+  color:#513992;
 }
 /* SSearch Bar */
 nav .Icons-view input[type="text"] {
@@ -198,6 +218,7 @@ nav .Icons-view .search-icon {
   align-items: center;
   display: flex;
   flex-direction: column;
+  z-index: 1000;
 }
 .animation-text-div {
   animation: AnimationText 2s ease-in;
@@ -463,6 +484,14 @@ footer section .footer-sections .footer-section a .footer-icon {
 main section .pagination-icon {
   border: 1px solid #666360;
   color: #3d3734;
+  border-radius: 20px;
+}
+
+main section .pagination-icon:hover {
+  border: 1px solid #FF6;
+  color: #FFF;
+  background-color: #513992;
+  border-radius: 20px;
 }
 
 main section .pagination-container {
@@ -470,6 +499,7 @@ main section .pagination-container {
   justify-content: flex-end;
   align-items: center;
   width: 90%;
+  margin: 20px 0 0 0;
 }
 
 main section .pagination-container h4 {

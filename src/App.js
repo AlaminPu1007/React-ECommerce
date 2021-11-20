@@ -1,35 +1,42 @@
-import './App.css';
+import "./App.css";
 import Dashboard from "./Pages/Dashboard";
 // category pages
-import Mens from './Pages/category/Mens';
+import Mens from "./Pages/category/Mens";
+import Women from "./Pages/category/Women";
+import Child from "./Pages/category/Child";
 import { Routes, Route } from "react-router-dom";
-//
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-const About=()=>{
-  const notify = () => toast("Wow so easy !");
-  
-  return (
-    <div>
-      <button onClick={notify}>Notify !</button>
-      <ToastContainer />
-    </div>
-  );
-};
-
+//Auth screen
+import Login from "./Pages/authentication/Login";
+import Register from "./Pages/authentication/Register";
+import Forget from "./Pages/authentication/Forget";
+//Dashboard component
+import CarList from "./Pages/dashboardComponent/CarList";
+import FavoriteList from "./Pages/dashboardComponent/FavoriteList";
+//This function return every page at initial position
+import ScrollToTop from "./component/ScrollToTop";
 
 function App() {
   return (
     <div className="App">
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        <Route path="/category" element={<Mens />} />
+        {/* Dashboard component screen */}
+        <Route path="/cart-list" element={<CarList />} />
+        <Route path="/favorite-list" element={<FavoriteList />} />
+        {/* category pages */}
+        <Route path="/men" element={<Mens />} />
+        <Route path="/wo-men" element={<Women />} />
+        <Route path="/child" element={<Child />} />
+        {/*  Authentication pages */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/forget" element={<Forget />} />
       </Routes>
     </div>
   );
 }
 
-export default()=>{
-  return <App/>;
+export default () => {
+  return <App />;
 };
