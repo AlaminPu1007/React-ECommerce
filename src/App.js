@@ -1,5 +1,7 @@
 import "./App.css";
 import Dashboard from "./Pages/Dashboard";
+//not found pages
+import NotFound from './component/NotFound';
 // category pages
 import Mens from "./Pages/category/Mens";
 import Women from "./Pages/category/Women";
@@ -32,6 +34,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forget" element={<Forget />} />
+        {/* not found route */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

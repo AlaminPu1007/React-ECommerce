@@ -1,0 +1,126 @@
+.login-container {
+  height: 100%;
+  background-color: red;
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.login-inner-div {
+  background-color: #fff;
+  z-index: 1;
+}
+
+.initial-div a:active {
+  color: #888dc4;
+}
+
+.initial-div a {
+  text-decoration: none;
+  color: #6a6867;
+}
+
+/* 
+Log in and sign up
+*/
+/* login , sign up css */
+
+.initial-div {
+  height: 100vh; /* Magic here- for center a div */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-div {
+  width: 30%;
+  text-align: center;
+  display: inline-block;
+  border: 1px solid #ccc;
+  padding: 2% 3% 3% 3%;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
+.input-div h3 {
+  color: #6a6867;
+}
+
+.input-div form {
+  padding: 5% 0;
+}
+
+.input-div input[type="email"],
+.input-div input[type="text"],
+.input-div input[type="password"],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.input-div input[type="text"]:focus,
+.input-div input[type="email"]:focus,
+input[type="password"]:focus {
+  outline: none !important;
+  box-shadow: 0 0 5px #719ece;
+  border: 1px solid #ccc;
+}
+
+.label-style {
+  float: left;
+  color: #6a6867;
+}
+
+.Login-Error {
+  align-items: start;
+  color: #ff6666;
+  float: left;
+  padding: 1% 0;
+}
+
+.button-style {
+  width: 95%;
+  background-color: #4caf50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* home page style */
+.home-initial-div {
+  margin: 0 auto;
+  text-align: center;
+  padding: 2% 0;
+}
+
+.home-map-div {
+  /* border: 1px solid black; */
+  width: 30%;
+  margin: 0 auto;
+  padding: 2% 0;
+}
+
+.home-icon {
+  float: right;
+}
+
+.home-menu {
+  border: 1px solid black;
+  margin: 0 10px 0 0;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #000;
+}

@@ -8,11 +8,11 @@ import { AiFillCaretDown } from "react-icons/ai";
 import { VscAccount } from "react-icons/vsc";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ active }) => {
   // define state for li text color
-  const [liTextColor, setLiTextColor]=useState(1);
+  const [liTextColor, setLiTextColor] = useState(1);
   // Li Text Color function
-  const LiTextColorFunction=(value)=>{
+  const LiTextColorFunction = (value) => {
     setLiTextColor(value);
   };
   return (
@@ -140,12 +140,14 @@ const Header = () => {
 
       {/* icon div */}
       <div className="Icons-view">
-        <div className="icon">
-          <Link className="icon-view" to="/">
-            <input type="text" name="search" placeholder="Search.." />
-            <BsSearch color="#33342f" size={20} className="search-icon" />
-          </Link>
-        </div>
+        {active ? (
+          <div className="icon">
+            <Link className="icon-view" to="/">
+              <input type="text" name="search" placeholder="Search.." />
+              <BsSearch color="#33342f" size={20} className="search-icon" />
+            </Link>
+          </div>
+        ) : null}
 
         <div className="icon">
           <Link className="icon-view" to="/login">

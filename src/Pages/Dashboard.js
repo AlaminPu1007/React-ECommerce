@@ -14,7 +14,7 @@ const Dashboard = () => {
   return (
     <div className="container">
       {/* Header Component */}
-      <Header />
+      <Header active={1} />
       {/* Header Component */}
       {/* Main Body Component */}
       <Body />
