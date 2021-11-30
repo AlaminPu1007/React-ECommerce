@@ -110,9 +110,6 @@ nav .Icons-view input[type="text"] {
   border-radius: 20px;
   font-size: 16px;
   background-color: white;
-  /* background-image: url('searchicon.png'); */
-  /* background-position: 10px 10px;  */
-  /* background-repeat: no-repeat; */
   padding: 10px 10px 10px 40px;
   -webkit-transition: width 0.4s ease-in-out;
   transition: width 0.4s ease-in-out;
@@ -166,9 +163,6 @@ nav .Icons-view .search-icon {
 .animation-text2 {
   background-color: green;
   animation: example 4s;
-  /* height: 200px; */
-  /* width: 200px; */
-  /* transform: translateX(100px); */
 }
 
 /* Dashboard page styles */
@@ -252,6 +246,7 @@ nav .Icons-view .search-icon {
   font-weight: 500;
   margin-top: 10px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 /* Header slider  */
@@ -401,6 +396,7 @@ men image div styles
   opacity: 0;
   transform: translateY(2em);
   transition: 0s 3s;
+  z-index: 1000;
 }
 
 .icon-style .cart-icon,
@@ -417,6 +413,7 @@ men image div styles
 
 .shop-now-button {
   margin: 30px;
+  text-decoration: none;
 }
 
 .more-button {

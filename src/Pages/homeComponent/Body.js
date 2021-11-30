@@ -5,7 +5,7 @@ import Data from "../../jsonFile/data.json";
 import DemoCollection from "../../jsonFile/DemoCollection.json";
 import { BsFillCartFill } from "react-icons/bs";
 import { MdFavorite } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 //define toastify in react
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -109,6 +109,11 @@ const Body = () => {
     return navigate(item);
   };
 
+  // going to shopping page
+  const shopFunction=()=>{
+    alert("you click on shopping page")
+  }
+
   return (
     <div style={{ paddingBottom: "20px", position: "relative" }}>
       {/* define toastify at initial point */}
@@ -123,7 +128,7 @@ const Body = () => {
                 className={
                   slideIndex === index + 1 ? "image-text-anime" : "image-text"
                 }
-                key={item.id}
+                key={item.id} 
               >
                 <div className="text-div">
                   <div className="animation-text-div">
@@ -220,9 +225,12 @@ const Body = () => {
                           alignItems: "center",
                         }}
                       >
-                        <button className="Button shop-now-button">
+                        <Link
+                          to={`/shop/${item.id}`}
+                          className="Button shop-now-button"
+                        >
                           Shop now
-                        </button>
+                        </Link>
                       </div>
                     </div>
                   </div>

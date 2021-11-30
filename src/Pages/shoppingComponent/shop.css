@@ -1,0 +1,113 @@
+.shop-container {
+  border: 1px solid;
+}
+
+.shop-container main {
+  display: flex;
+  padding: 3% 0;
+  justify-content: space-around;
+  /* align-items: center; */
+}
+
+.shop-container .shop-image-div {
+  width: 50%;
+  overflow: hidden;
+}
+
+.shop-container .shop-image-div img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.shop-container .shop-details-container {
+  width: 45%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.shop-container .shop-details {
+  width: 90%;
+}
+
+.shop-container .shop-details .product-title {
+  font-weight: 500;
+  font-size: 25px;
+  padding: 5% 0;
+}
+
+.shop-container .shop-details p {
+  padding: 1% 0;
+}
+.shop-container .shop-details .product-price {
+  font-weight: 600;
+}
+.shop-container .shop-details hr {
+  margin-top: 2%;
+  border-top: 1px solid #d3d0d0;
+}
+
+.shop-container .shop-details .custom-select {
+  width: 300px;
+}
+
+.shop-container .shop-details #cars:focus {
+  outline: none !important;
+  box-shadow: 0 0 5px #719ece;
+  border: 1px solid #ccc;
+}
+
+.shop-container .shop-details .custom-select select {
+  background: #EAE9E5;
+  border: 1px solid #dfdfdf;
+  color: #6f6f6f;
+}
+
+.shop-container .shop-details .order-number {
+  display: flex;
+  width: 60%;
+}
+
+.shop-container .shop-details .order-number p{
+  border: 1px solid;
+  width: 35px;
+  text-align: center;
+}
+
+
+.shop-container .shop-details .order-number .order-button-deActive {
+  background-color: #707070;
+  border: none;
+  color: white;
+  padding: 8px 25px;
+  text-align: center;
+  /* border-radius: 5px; */
+  font-size: 16px;
+  font-weight: 500;
+  margin-left: 25px;
+  cursor: no-drop;
+  text-decoration: none;
+}
+
+.shop-container .shop-details .order-number .order-button {
+  background-color: #7180df;
+  border: none;
+  color: white;
+  padding: 8px 25px;
+  text-align: center;
+  /* border-radius: 5px; */
+  font-size: 16px;
+  font-weight: 500;
+  margin-left: 25px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.shop-container .shop-details .order-number .order-button:hover {
+  background-color: #7180df;
+}
+.shop-container .shop-details .order-number .increase-order:hover {
+  background-color: #7180df;
+  color: #FFF;
+  cursor: pointer;
+}

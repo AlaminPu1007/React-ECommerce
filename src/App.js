@@ -11,6 +11,8 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./Pages/authentication/Login";
 import Register from "./Pages/authentication/Register";
 import Forget from "./Pages/authentication/Forget";
+// Shopping pages
+import Shopping from './Pages/Shopping';
 //Dashboard component
 import CarList from "./Pages/dashboardComponent/CarList";
 import FavoriteList from "./Pages/dashboardComponent/FavoriteList";
@@ -34,6 +36,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forget" element={<Forget />} />
+        {/* Shopping page */}
+        <Route path="/shop/:id" element={<Shopping />} />
         {/* not found route */}
         <Route path="*" element={<NotFound />} />
       </Routes>
