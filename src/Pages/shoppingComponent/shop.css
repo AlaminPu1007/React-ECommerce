@@ -58,7 +58,7 @@
 }
 
 .shop-container .shop-details .custom-select select {
-  background: #EAE9E5;
+  background: #eae9e5;
   border: 1px solid #dfdfdf;
   color: #6f6f6f;
 }
@@ -68,12 +68,11 @@
   width: 60%;
 }
 
-.shop-container .shop-details .order-number p{
+.shop-container .shop-details .order-number p {
   border: 1px solid;
   width: 35px;
   text-align: center;
 }
-
 
 .shop-container .shop-details .order-number .order-button-deActive {
   background-color: #707070;
@@ -108,6 +107,90 @@
 }
 .shop-container .shop-details .order-number .increase-order:hover {
   background-color: #7180df;
-  color: #FFF;
+  color: #fff;
   cursor: pointer;
+}
+
+/* Order pages styles */
+.order-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2% 0;
+  width: 100%;
+}
+.order-container .order-main-container {
+  width: 60%;
+}
+
+.order-container .order-main-container .title {
+  text-align: center;
+  font-weight: 500;
+  font-size: 20px;
+  padding: 2% 0;
+}
+
+.order-container .order-main-container .first-last-name {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+}
+
+.order-container .order-main-container input[type="email"],
+.order-container .order-main-container input[type="text"],
+.order-container .order-main-container input[type="password"],
+.order-container .order-main-container input[type="number"],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  outline: none !important;
+  color: #6f6f6f;
+  font-size: 15px;
+}
+
+.order-container .order-main-container ::placeholder {
+  color: #6f6f6f;
+  font-size: 15px;
+}
+
+.order-container .order-main-container .company-name {
+  padding: 1% 0;
+}
+
+.order-container .order-main-container .country-region {
+  font-weight: 700;
+}
+
+.order-container .order-main-container #district-name {
+  color: #6f6f6f;
+  border: 1px solid #d3d0d0;
+   font-size: 15px;
+  
+}
+
+.order-container .order-main-container #district-name option {
+  font-size: 15px;
+}
+
+.order-container .order-main-container .place-order-button {
+  display: flex;
+  justify-content: center;
+}
+.order-container .order-main-container .place-button {
+  background-color: #7180df;
+  border: none;
+  color: white;
+  padding: 10px 80px;
+  text-align: center;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 10px;
+  cursor: pointer;
+  text-decoration: none;
 }

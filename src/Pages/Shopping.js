@@ -87,7 +87,7 @@ const Shopping = () => {
               {selected === "Choose" ? (
                 <button className="order-button-deActive" disabled> shop now</button>
               ) : (
-                <button className="order-button"> shop now</button>
+                <Link to={`/order/${product.id}`} className="order-button"> shop now</Link>
               )}
             </div>
             {/* order now */}

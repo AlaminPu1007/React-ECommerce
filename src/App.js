@@ -13,6 +13,7 @@ import Register from "./Pages/authentication/Register";
 import Forget from "./Pages/authentication/Forget";
 // Shopping pages
 import Shopping from './Pages/Shopping';
+import Order from './Pages/Order';
 //Dashboard component
 import CarList from "./Pages/dashboardComponent/CarList";
 import FavoriteList from "./Pages/dashboardComponent/FavoriteList";
@@ -38,6 +39,7 @@ function App() {
         <Route path="/forget" element={<Forget />} />
         {/* Shopping page */}
         <Route path="/shop/:id" element={<Shopping />} />
+        <Route path="/order/:id" element={<Order />} />
         {/* not found route */}
         <Route path="*" element={<NotFound />} />
       </Routes>
