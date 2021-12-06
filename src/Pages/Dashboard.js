@@ -1,16 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Css/home.css";
 import Header from "./homeComponent/Header";
 import Body from "./homeComponent/Body";
 import Footer from "./homeComponent/Footer";
 
 const Dashboard = () => {
-  const [animation, setAnimation] = useState("animation-text");
-
-  const ButtonClick = () => {
-    setAnimation("animation-text2");
-  };
-
   return (
     <div className="container">
       {/* Header Component */}

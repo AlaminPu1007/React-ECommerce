@@ -73,6 +73,9 @@
   width: 35px;
   text-align: center;
 }
+.shop-container .shop-details .order-number .increase-decrease {
+  display: flex;
+}
 
 .shop-container .shop-details .order-number .order-button-deActive {
   background-color: #707070;
@@ -125,9 +128,9 @@
 
 .order-container .order-main-container .title {
   text-align: center;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 20px;
-  padding: 2% 0;
+  padding: 2% 0 4% 0;
 }
 
 .order-container .order-main-container .first-last-name {
@@ -153,6 +156,11 @@ select {
   font-size: 15px;
 }
 
+.order-container .order-main-container label,
+.country-name {
+  color: #6f6f6f;
+}
+
 .order-container .order-main-container ::placeholder {
   color: #6f6f6f;
   font-size: 15px;
@@ -169,8 +177,7 @@ select {
 .order-container .order-main-container #district-name {
   color: #6f6f6f;
   border: 1px solid #d3d0d0;
-   font-size: 15px;
-  
+  font-size: 15px;
 }
 
 .order-container .order-main-container #district-name option {
@@ -193,4 +200,57 @@ select {
   margin-top: 10px;
   cursor: pointer;
   text-decoration: none;
+}
+
+/* Responsive screen */
+/* for tablet  */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .shop-container main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .shop-container .shop-details-container,
+  .shop-container .shop-image-div {
+    width: 100%;
+  }
+}
+
+/* for mobile  */
+@media only screen and (max-width: 767px) {
+  .shop-container main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .shop-container .shop-details-container,
+  .shop-container .shop-image-div {
+    width: 100%;
+  }
+  .shop-container .shop-details .order-number {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  .shop-container .shop-details .order-number .order-button-deActive {
+    padding: 8px 25px;
+    margin-left: 10px;
+  }
+  .shop-container .shop-details .order-number .order-button {
+    padding: 8px 25px;
+    margin-left: 10px;
+  }
+  .shop-container .shop-details .order-number .increase-decrease {
+    padding: 10px 0;
+  }
+  .order-container .order-main-container .place-order-button {
+  margin-bottom: 10px;
+}
+.order-container .order-main-container .place-button {
+  padding: 10px 50px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 10px;
+}
 }

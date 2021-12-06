@@ -3,7 +3,7 @@ import "./shoppingComponent/shop.css";
 import { Link, useParams } from "react-router-dom";
 import DemoCollection from "../jsonFile/DemoCollection.json";
 import Header from "./homeComponent/Header";
-import Footer from "./homeComponent/Footer";
+import Footer from "./homeComponent/Footer"; 
 
 const Shopping = () => {
   let { id } = useParams();
@@ -77,17 +77,26 @@ const Shopping = () => {
             <br />
             {/* order now */}
             <div className="order-number">
-              <p className="increase-order" onClick={deCrease}>
-                -
-              </p>
-              <p>{count}</p>
-              <p className="increase-order" onClick={inCrease}>
-                +
-              </p>
+              <div className="increase-decrease">
+                <p className="increase-order" onClick={deCrease}>
+                  -
+                </p>
+                <p>{count}</p>
+                <p className="increase-order" onClick={inCrease}>
+                  +
+                </p>
+              </div>
+
               {selected === "Choose" ? (
-                <button className="order-button-deActive" disabled> shop now</button>
+                <button className="order-button-deActive" disabled>
+                  {" "}
+                  shop now
+                </button>
               ) : (
-                <Link to={`/order/${product.id}`} className="order-button"> shop now</Link>
+                <Link to={`/order/${product.id}`} className="order-button">
+                  {" "}
+                  shop now
+                </Link>
               )}
             </div>
             {/* order now */}

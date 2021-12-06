@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState, useContext } from "react";
 import "../Css/home.css";
 //boots strap icon
 import { BsSearch, BsFillCartFill } from "react-icons/bs";
@@ -6,15 +6,28 @@ import { MdFavoriteBorder } from "react-icons/md";
 import { FiMenu } from "react-icons/fi";
 import { AiFillCaretDown } from "react-icons/ai";
 import { VscAccount } from "react-icons/vsc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import {Context as AuthContext} from '../../context/AuthContext';
 
 const Header = ({ active }) => {
+  const navigate = useNavigate();
+  const { SearchedInputValue } = useContext(AuthContext);
   // define state for li text color
   const [liTextColor, setLiTextColor] = useState(1);
+  const [searchValue, setSearchValue] = useState("");
   // Li Text Color function
   const LiTextColorFunction = (value) => {
     setLiTextColor(value);
   };
+
+  const SearchFunction = (event) => {
+    setSearchValue(event.target.value);
+  };
+
+  const submittedFunction=()=>{
+    return searchValue ? (SearchedInputValue(searchValue), navigate("/search-result")) : null;
+  }
+
   return (
     <nav>
       {/* logo with menu bar */}
@@ -142,26 +155,38 @@ const Header = ({ active }) => {
       <div className="Icons-view">
         {active ? (
           <div className="icon">
-            <Link className="icon-view" to="/">
-              <input type="text" name="search" placeholder="Search.." />
-              <BsSearch color="#33342f" size={20} className="search-icon" />
-            </Link>
+            <div className="icon-view">
+              <input
+                type="text"
+                name="search"
+                placeholder="Search.."
+                onChange={(event) => {
+                  SearchFunction(event);
+                }}
+              />
+              <BsSearch
+                onClick={submittedFunction}
+                color="#33342f"
+                size={20}
+                className="search-icon"
+              />
+            </div>
           </div>
         ) : null}
 
-        <div className="icon">
+        <div className="icon mobile-hide">
           <Link className="icon-view" to="/login">
-            <VscAccount size={20} className="menu-icon" />
+            <VscAccount size={20} className="menu-icon " />
           </Link>
         </div>
-        <div className="icon">
+        <div className="icon tab-hide">
           <Link className="icon-view" to="/cart-list">
-            <BsFillCartFill size={20} className="menu-icon" />
+            <BsFillCartFill size={20} className="menu-icon " />
           </Link>
         </div>
-        <div className="icon">
+        <div className="icon tab-hide">
           <Link className="icon-view" to="/favorite-list">
-            <MdFavoriteBorder size={22} className="menu-icon" />
+            <MdFavoriteBorder size={22} className="menu-icon " />
           </Link>
         </div>
       </div>

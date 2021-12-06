@@ -24,7 +24,7 @@ const Login = () => {
   return (
     <div>
       {/* Header Component */}
-      <Header active={0} />
+      <Header active={0} /> 
       {/* Header Component */}
       <div className="initial-div">
         <div className="input-div">

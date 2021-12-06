@@ -1,26 +1,48 @@
+import React, { useContext } from "react";
 import "./App.css";
 import Dashboard from "./Pages/Dashboard";
+// Search Result page
+import SearchResult from "./Pages/SearchResult";
 //not found pages
-import NotFound from './component/NotFound';
+import NotFound from "./component/NotFound";
 // category pages
 import Mens from "./Pages/category/Mens";
 import Women from "./Pages/category/Women";
 import Child from "./Pages/category/Child";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate, Outlet, useLocation } from "react-router-dom";
 //Auth screen
 import Login from "./Pages/authentication/Login";
 import Register from "./Pages/authentication/Register";
 import Forget from "./Pages/authentication/Forget";
 // Shopping pages
-import Shopping from './Pages/Shopping';
-import Order from './Pages/Order';
+import Shopping from "./Pages/Shopping";
+import Order from "./Pages/Order";
 //Dashboard component
 import CarList from "./Pages/dashboardComponent/CarList";
 import FavoriteList from "./Pages/dashboardComponent/FavoriteList";
 //This function return every page at initial position
 import ScrollToTop from "./component/ScrollToTop";
+//import context
+import { Provider as AuthProvider } from "./context/AuthContext";
+import { Context as AuthContext } from "./context/AuthContext";
 
-function App() {
+const PrivateRoutes = () => {
+  const location = useLocation();
+    const {
+      state: { token },
+    } = useContext(AuthContext);
+
+  return token ? (
+    <Outlet />
+  ) : (
+    <Navigate to="/login" replace state={{ from: location }} />
+  );
+};
+
+const App = () => {
+  const {
+    state: { token },
+  } = useContext(AuthContext);
   return (
     <div className="App">
       <ScrollToTop />
@@ -33,6 +55,8 @@ function App() {
         <Route path="/men" element={<Mens />} />
         <Route path="/wo-men" element={<Women />} />
         <Route path="/child" element={<Child />} />
+        {/* Searched result page */}
+        <Route path="/search-result" element={<SearchResult />} />
         {/*  Authentication pages */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -45,8 +69,12 @@ function App() {
       </Routes>
     </div>
   );
-}
+};
 
 export default () => {
-  return <App />;
+  return (
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  );
 };

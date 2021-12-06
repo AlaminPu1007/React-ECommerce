@@ -1,4 +1,4 @@
-.login-container {
+/* .login-container {
   height: 100%;
   background-color: red;
   width: 100%;
@@ -9,7 +9,7 @@
 .login-inner-div {
   background-color: #fff;
   z-index: 1;
-}
+} */
 
 .initial-div a:active {
   color: #888dc4;
@@ -123,4 +123,26 @@ input[type="submit"]:hover {
   padding: 5px 10px;
   text-decoration: none;
   color: #000;
+}
+
+/* Responsive screen */
+/* for tablet  */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .initial-div {
+    height: 50vh;
+  }
+
+  .input-div {
+    width: 50%;
+  }
+}
+/* for mobile  */
+@media only screen and (max-width: 767px) {
+  .initial-div {
+    height: 60vh;
+  }
+
+  .input-div {
+    width: 80%;
+  }
 }

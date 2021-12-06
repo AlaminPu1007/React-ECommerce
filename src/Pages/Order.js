@@ -56,15 +56,15 @@ const Order = () => {
               <input type="text" id="company-name" placeholder="Company name" />
             </div>
             <div>
-              <p>
-                Country / Region{" "}
+              <p className="country-name">
+                Country / Region
                 <span style={{ color: "red", fontSize: "25px" }}> *</span>
               </p>
               <p className="country-region">Bangladesh</p>
             </div>
             <div className="company-name">
               <label for="Street-name">
-                Street address{" "}
+                Street address
                 <span style={{ color: "red", fontSize: "25px" }}> *</span>
               </label>
               <input
@@ -134,10 +134,9 @@ const Order = () => {
                 <span style={{ color: "red", fontSize: "25px" }}> *</span>
               </label>
               <input
-                type="number"
+                type="text"
                 id="Billing Mobile Number *"
                 placeholder="Billing Mobile Number"
-                maxlength="11"
                 required
               />
             </div>
@@ -153,6 +152,19 @@ const Order = () => {
                 required
               />
             </div>
+            <div className="company-name">
+              <div>
+                <label for="Payment System">
+                  Payment System
+                  <span style={{ color: "red", fontSize: "25px" }}> *</span>
+                </label>
+              </div>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <input checked type="radio" id="Payment System" />
+                <p className="country-name">Cash on delivery</p>
+              </div> 
+            </div> 
+            <br />
             <div className="place-order-button">
               <button className="place-button">Place order</button>
             </div>
