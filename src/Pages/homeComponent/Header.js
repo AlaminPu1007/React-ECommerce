@@ -52,7 +52,7 @@ const Header = ({ active }) => {
 
   //open/close drawer
   const OpenDrawer = () => setDrawerVisible(!drawerVisible);
-  
+
   // detect mouse click on outside
   useEffect(() => {
     /**
@@ -79,7 +79,7 @@ const Header = ({ active }) => {
         {/* logo with menu bar */}
         <div className="logo-menu">
           {/* Drawer navigation */}
-          <div className="drawer-">
+          <div className="drawer">
             <div className="Main-menu">
               <FiMenu
                 color="#6a6867"
