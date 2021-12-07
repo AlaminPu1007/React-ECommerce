@@ -81,7 +81,7 @@ const Women = () => {
           <div className="men-initial-container">
             {currentPosts.map((item, index) => {
               return item.category === "wo-men" ? (
-                <div className="men-containers">
+                <div key={item.id} className="men-containers">
                   <div className="men-container">
                     <div className="image-icon">
                       <img

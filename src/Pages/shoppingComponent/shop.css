@@ -91,11 +91,11 @@
   text-decoration: none;
 }
 
-.shop-container .shop-details .order-number .order-button {
+.shop-container .shop-details .order-number .order-button { 
   background-color: #7180df;
   border: none;
   color: white;
-  padding: 8px 25px;
+  padding: 5px 20px;
   text-align: center;
   /* border-radius: 5px; */
   font-size: 16px;

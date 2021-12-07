@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext,useRef,useEffect } from "react";
 import "../Css/home.css";
 //boots strap icon
 import { BsSearch, BsFillCartFill } from "react-icons/bs";
@@ -22,8 +22,13 @@ import { GoPerson } from "react-icons/go";
 import { RiWomenLine } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
 import { Context as AuthContext } from "../../context/AuthContext";
+//bring outside click 
+// import {DetectOutsideClick} from '../../component/DetectOutsideClick';
 
 const Header = ({ active }) => {
+  //detect outside click
+  const ref = useRef(null);
+  //detect outside click
   const navigate = useNavigate();
   const { SearchedInputValue } = useContext(AuthContext);
   // define state for li text color
@@ -47,14 +52,34 @@ const Header = ({ active }) => {
 
   //open/close drawer
   const OpenDrawer = () => setDrawerVisible(!drawerVisible);
+  
+  // detect mouse click on outside
+  useEffect(() => {
+    /**
+     * Alert if clicked on outside of element
+     */
+    function handleClickOutside(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setDrawerVisible(false);
+      }
+    }
+
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [ref]);
+  // detect mouse click on outside
 
   return (
-    <nav>
+    <nav ref={ref}>
       <div className="nav-bar">
         {/* logo with menu bar */}
         <div className="logo-menu">
           {/* Drawer navigation */}
-          <div className="drawer">
+          <div className="drawer-">
             <div className="Main-menu">
               <FiMenu
                 color="#6a6867"
