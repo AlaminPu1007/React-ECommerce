@@ -13,7 +13,6 @@ import "react-toastify/dist/ReactToastify.css";
 const Body = () => {
   const navigate = useNavigate();
   const [slideIndex, setSlideIndex] = useState(1);
- 
 
   // making an auto play slider
   const timeoutRef = useRef(null);
@@ -114,11 +113,12 @@ const Body = () => {
   const shopFunction = () => {
     alert("you click on shopping page");
   };
-  
+
   return (
     <div className="body-container">
       {/* define toastify at initial point */}
-      <ToastContainer />
+      <ToastContainer className="toast-container" />
+
       {/* header image slider */}
       <div style={{ position: "relative" }}>
         {/* Sliding an image with text */}

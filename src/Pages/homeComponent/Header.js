@@ -2,17 +2,32 @@ import React, { useState, useContext } from "react";
 import "../Css/home.css";
 //boots strap icon
 import { BsSearch, BsFillCartFill } from "react-icons/bs";
-import { MdFavoriteBorder } from "react-icons/md";
+import {
+  MdFavoriteBorder,
+  MdFeaturedPlayList,
+  MdPermContactCalendar,
+} from "react-icons/md";
 import { FiMenu } from "react-icons/fi";
-import { AiFillCaretDown } from "react-icons/ai";
+import { FaBloggerB, FaChild } from "react-icons/fa";
+import {
+  AiFillCaretDown,
+  AiOutlineClose,
+  AiFillHome,
+  AiFillExclamationCircle,
+  AiOutlineLogin,
+} from "react-icons/ai";
+import { BiCategory } from "react-icons/bi";
 import { VscAccount } from "react-icons/vsc";
+import { GoPerson } from "react-icons/go";
+import { RiWomenLine } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
-import {Context as AuthContext} from '../../context/AuthContext';
+import { Context as AuthContext } from "../../context/AuthContext";
 
 const Header = ({ active }) => {
   const navigate = useNavigate();
   const { SearchedInputValue } = useContext(AuthContext);
   // define state for li text color
+  const [drawerVisible, setDrawerVisible] = useState(false);
   const [liTextColor, setLiTextColor] = useState(1);
   const [searchValue, setSearchValue] = useState("");
   // Li Text Color function
@@ -24,44 +39,55 @@ const Header = ({ active }) => {
     setSearchValue(event.target.value);
   };
 
-  const submittedFunction=()=>{
-    return searchValue ? (SearchedInputValue(searchValue), navigate("/search-result")) : null;
-  }
+  const submittedFunction = () => {
+    return searchValue
+      ? (SearchedInputValue(searchValue), navigate("/search-result"))
+      : null;
+  };
+
+  //open/close drawer
+  const OpenDrawer = () => setDrawerVisible(!drawerVisible);
 
   return (
     <nav>
-      {/* logo with menu bar */}
-      <div className="logo-menu">
-        {/* Drawer navigation */}
-        <div className="drawer">
-          <Link className="Main-menu" to="/">
-            <FiMenu size={20} />
+      <div className="nav-bar">
+        {/* logo with menu bar */}
+        <div className="logo-menu">
+          {/* Drawer navigation */}
+          <div className="drawer">
+            <div className="Main-menu">
+              <FiMenu
+                color="#6a6867"
+                size={20}
+                onClick={OpenDrawer}
+                style={{ cursor: "pointer" }}
+              />
+            </div>
+          </div>
+          {/* Drawer navigation */}
+          {/* logo */}
+          <Link to="/" className="logo-title">
+            <span style={{ fontWeight: "bold", color: "#1a1a18" }}>
+              E-Commerce
+            </span>{" "}
+            <span style={{ color: "#b2b0b0" }}>Templates</span>
           </Link>
-        </div>
-        {/* Drawer navigation */}
-        {/* logo */}
-        <Link to="/" className="logo-title">
-          <span style={{ fontWeight: "bold", color: "#1a1a18" }}>
-            E-Commerce
-          </span>{" "}
-          <span style={{ color: "#b2b0b0" }}>Templates</span>
-        </Link>
 
-        {/* logo */}
-        {/* Menu  */}
-        <div>
-          <ul>
-            <li className="sub-menu-parent">
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <Link onClick={() => LiTextColorFunction(1)} to="/">
-                  Home
-                </Link>
-                {/* <AiFillCaretDown
+          {/* logo */}
+          {/* Menu  */}
+          <div className="main-nav-menu">
+            <ul>
+              <li className="sub-menu-parent">
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <Link onClick={() => LiTextColorFunction(1)} to="/">
+                    Home
+                  </Link>
+                  {/* <AiFillCaretDown
                   color={liTextColor === 1 ? "#888dc4" : "#6a6867"}
                 /> */}
-              </div>
+                </div>
 
-              {/* <ul className="sub-menu">
+                {/* <ul className="sub-menu">
                 <li>
                   <Link to="/">Sub Item 1</Link>
                 </li>
@@ -75,122 +101,210 @@ const Header = ({ active }) => {
                   <Link to="/">Sub Item 4</Link>
                 </li>
               </ul> */}
-            </li>
-            <li className="sub-menu-parent">
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <Link onClick={() => LiTextColorFunction(2)} to="/men">
-                  Category
-                </Link>
-                <AiFillCaretDown
-                  color={liTextColor === 2 ? "#888dc4" : "#6a6867"}
-                />
-              </div>
-              <ul className="sub-menu">
-                <li>
-                  <Link to="/men">Men's</Link>
-                </li>
-                <li>
-                  <Link to="/wo-men">Wo Men's</Link>
-                </li>
-                <li>
-                  <Link to="/child">Child</Link>
-                </li>
-              </ul>
-            </li>
-            <li className="sub-menu-parent">
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <Link onClick={() => LiTextColorFunction(3)} to="/">
-                  Features
-                </Link>
-                <AiFillCaretDown
-                  color={liTextColor === 3 ? "#888dc4" : "#6a6867"}
-                />
-              </div>
-              <ul className="sub-menu">
-                <li>
-                  <Link to="/">Sub Item 1</Link>
-                </li>
-                <li>
-                  <Link to="/">Sub Item 2</Link>
-                </li>
-              </ul>
-            </li>
-            <li className="sub-menu-parent">
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <Link onClick={() => LiTextColorFunction(4)} to="/">
-                  Blog
-                </Link>
-                {/* <AiFillCaretDown
+              </li>
+              <li className="sub-menu-parent">
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <Link onClick={() => LiTextColorFunction(2)} to="/men">
+                    Category
+                  </Link>
+                  <AiFillCaretDown
+                    color={liTextColor === 2 ? "#888dc4" : "#6a6867"}
+                  />
+                </div>
+                <ul className="sub-menu">
+                  <li>
+                    <Link to="/men">Men's</Link>
+                  </li>
+                  <li>
+                    <Link to="/wo-men">Wo Men's</Link>
+                  </li>
+                  <li>
+                    <Link to="/child">Child</Link>
+                  </li>
+                </ul>
+              </li>
+              <li className="sub-menu-parent">
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <Link onClick={() => LiTextColorFunction(3)} to="/">
+                    Features
+                  </Link>
+                  {/* <AiFillCaretDown
+                    color={liTextColor === 3 ? "#888dc4" : "#6a6867"}
+                  /> */}
+                </div>
+                {/* <ul className="sub-menu">
+                  <li>
+                    <Link to="/">Sub Item 1</Link>
+                  </li>
+                  <li>
+                    <Link to="/">Sub Item 2</Link>
+                  </li>
+                </ul> */}
+              </li>
+              <li className="sub-menu-parent">
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <Link onClick={() => LiTextColorFunction(4)} to="/">
+                    Blog
+                  </Link>
+                  {/* <AiFillCaretDown
                     color={liTextColor === 4 ? "#888dc4" : "#6a6867"}
                   /> */}
-              </div>
-            </li>
-            <li className="sub-menu-parent">
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <Link onClick={() => LiTextColorFunction(5)} to="/about">
-                  About
-                </Link>
-                {/* <AiFillCaretDown
+                </div>
+              </li>
+              <li className="sub-menu-parent">
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <Link onClick={() => LiTextColorFunction(5)} to="/about">
+                    About
+                  </Link>
+                  {/* <AiFillCaretDown
                     color={liTextColor == 5 ? "#888dc4" : "#6a6867"}
                   /> */}
-              </div>
-            </li>
-            <li className="sub-menu-parent">
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <Link onClick={() => LiTextColorFunction(6)} to="/">
-                  Contact
-                </Link>
-                {/* <AiFillCaretDown
+                </div>
+              </li>
+              <li className="sub-menu-parent">
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <Link onClick={() => LiTextColorFunction(6)} to="/">
+                    Contact
+                  </Link>
+                  {/* <AiFillCaretDown
                     color={liTextColor === 6 ? "#888dc4" : "#6a6867"}
                   /> */}
-              </div>
-            </li>
-          </ul>
-        </div>
-        {/* Menu  */}
-      </div>
-      {/* logo with menu bar */}
-
-      {/* icon div */}
-      <div className="Icons-view">
-        {active ? (
-          <div className="icon">
-            <div className="icon-view">
-              <input
-                type="text"
-                name="search"
-                placeholder="Search.."
-                onChange={(event) => {
-                  SearchFunction(event);
-                }}
-              />
-              <BsSearch
-                onClick={submittedFunction}
-                color="#33342f"
-                size={20}
-                className="search-icon"
-              />
-            </div>
+                </div>
+              </li>
+            </ul>
           </div>
-        ) : null}
+          {/* Menu  */}
+        </div>
+        {/* logo with menu bar */}
 
-        <div className="icon mobile-hide">
-          <Link className="icon-view" to="/login">
-            <VscAccount size={20} className="menu-icon " />
-          </Link>
+        {/* icon div */}
+        <div className="Icons-view">
+          {active ? (
+            <div className="icon">
+              <div className="icon-view">
+                <input
+                  type="text"
+                  name="search"
+                  placeholder="Search.."
+                  onChange={(event) => {
+                    SearchFunction(event);
+                  }}
+                />
+                <BsSearch
+                  onClick={submittedFunction}
+                  color="#33342f"
+                  size={20}
+                  className="search-icon"
+                />
+              </div>
+            </div>
+          ) : null}
+
+          <div className="icon mobile-hide">
+            <Link className="icon-view" to="/login">
+              <VscAccount size={20} className="menu-icon " />
+            </Link>
+          </div>
+          <div className="icon tab-hide">
+            <Link className="icon-view" to="/cart-list">
+              <BsFillCartFill size={20} className="menu-icon " />
+            </Link>
+          </div>
+          <div className="icon tab-hide">
+            <Link className="icon-view" to="/favorite-list">
+              <MdFavoriteBorder size={22} className="menu-icon " />
+            </Link>
+          </div>
         </div>
-        <div className="icon tab-hide">
-          <Link className="icon-view" to="/cart-list">
-            <BsFillCartFill size={20} className="menu-icon " />
-          </Link>
-        </div>
-        <div className="icon tab-hide">
-          <Link className="icon-view" to="/favorite-list">
-            <MdFavoriteBorder size={22} className="menu-icon " />
-          </Link>
-        </div>
+        {/* icon div */}
       </div>
-      {/* icon div */}
+      {/* Drawer navigation */}
+      <div
+        className={
+          drawerVisible ? "drawer-navigation-active" : "drawer-navigation"
+        }
+      >
+        <div className="drawer-close-icon">
+          <AiOutlineClose
+            size={25}
+            color="#FFF"
+            onClick={OpenDrawer}
+            style={{ cursor: "pointer" }}
+          />
+        </div>
+        {/* show drawer menu */}
+        <div className="drawer-menu-container">
+          <div className="drawer-menu-list">
+            <ul>
+              <li className="before-drawer-icon-text">
+                <Link to="/" className="drawer-icon-text">
+                  <AiFillHome color="#FFF" size={22} />
+                  <p>Home</p>
+                </Link>
+              </li>
+              <li className="before-drawer-icon-text">
+                <Link to="/men" className="drawer-icon-text">
+                  <BiCategory color="#FFF" size={22} />
+                  <p>Category</p>
+                </Link>
+              </li>
+              {/* category menu sub menu */}
+              <div className="category-sub-menu">
+                <li className="before-drawer-icon-text-sub">
+                  <Link to="/men" className="drawer-icon-text">
+                    <GoPerson color="#FFF" size={20} />
+                    <p>Men's</p>
+                  </Link>
+                </li>
+                <li className="before-drawer-icon-text-sub">
+                  <Link to="/wo-men" className="drawer-icon-text">
+                    <RiWomenLine color="#FFF" size={20} />
+                    <p>Wo Mens's</p>
+                  </Link>
+                </li>
+                <li className="before-drawer-icon-text-sub">
+                  <Link to="/child" className="drawer-icon-text">
+                    <FaChild color="#FFF" size={20} />
+                    <p>Child</p>
+                  </Link>
+                </li>
+              </div>
+              {/* category menu sub menu */}
+              <li className="before-drawer-icon-text">
+                <Link to="/" className="drawer-icon-text">
+                  <MdFeaturedPlayList color="#FFF" size={22} />
+                  <p>Features</p>
+                </Link>
+              </li>
+              <li className="before-drawer-icon-text">
+                <Link to="/" className="drawer-icon-text">
+                  <FaBloggerB color="#FFF" size={22} />
+                  <p>Blog</p>
+                </Link>
+              </li>
+              <li className="before-drawer-icon-text">
+                <Link to="/" className="drawer-icon-text">
+                  <AiFillExclamationCircle color="#FFF" size={22} />
+                  <p>About</p>
+                </Link>
+              </li>
+              <li className="before-drawer-icon-text">
+                <Link to="/" className="drawer-icon-text">
+                  <MdPermContactCalendar color="#FFF" size={22} />
+                  <p>Contact</p>
+                </Link>
+              </li>
+              <li className="before-drawer-icon-text">
+                <Link to="/login" className="drawer-icon-text">
+                  <AiOutlineLogin color="#FFF" size={22} />
+                  <p>Login</p>
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+        {/* show drawer menu */}
+      </div>
     </nav>
   );
 };

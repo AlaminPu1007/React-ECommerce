@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DemoCollection from "../../jsonFile/DemoCollection.json";
+import { Link } from "react-router-dom";
 import Header from "../homeComponent/Header";
 import Footer from "../homeComponent/Footer";
 import { BsFillCartFill } from "react-icons/bs";
@@ -65,10 +66,9 @@ const Mens = () => {
   };
 
   return (
-    <div>
-      {/* added tesify toast */}
-      <ToastContainer />
-      {/* added tesify toast */}
+    <div className="body-container">
+      {/* define toastify at initial point */}
+      <ToastContainer className="toast-container" />
       {/* Header Area */}
       <Header />
       {/* Header Area */}
@@ -114,9 +114,12 @@ const Mens = () => {
                         alignItems: "center",
                       }}
                     >
-                      <button className="Button shop-now-button">
+                      <Link
+                        to={`/shop/${item.id}`}
+                        className="Button shop-now-button"
+                      >
                         Shop now
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -126,7 +129,7 @@ const Mens = () => {
           <div className="pagination-container">
             <AiOutlineLeft
               size={25}
-              style={{ marginRight: "10px", }}
+              style={{ marginRight: "10px" }}
               onClick={() => {
                 CounterFunction("decrease");
               }}

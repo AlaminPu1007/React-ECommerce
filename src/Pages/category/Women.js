@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DemoCollection from "../../jsonFile/DemoCollection.json";
+import { Link } from "react-router-dom";
 import Header from "../homeComponent/Header";
 import Footer from "../homeComponent/Footer";
 import { BsFillCartFill } from "react-icons/bs";
@@ -65,9 +66,9 @@ const Women = () => {
   };
 
   return (
-    <div>
+    <div className="body-container">
       {/* added tesify toast */}
-      <ToastContainer />
+      <ToastContainer className="toast-container" />
       {/* added tesify toast */}
       {/* Header Area */}
       <Header />
@@ -114,9 +115,12 @@ const Women = () => {
                         alignItems: "center",
                       }}
                     >
-                      <button className="Button shop-now-button">
+                      <Link
+                        to={`/shop/${item.id}`}
+                        className="Button shop-now-button"
+                      >
                         Shop now
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
