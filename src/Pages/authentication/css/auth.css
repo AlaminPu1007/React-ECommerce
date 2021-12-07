@@ -129,7 +129,7 @@ input[type="submit"]:hover {
 /* for tablet  */
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
   .initial-div {
-    height: 50vh;
+    height: 60vh;
   }
 
   .input-div {
@@ -139,7 +139,7 @@ input[type="submit"]:hover {
 /* for mobile  */
 @media only screen and (max-width: 767px) {
   .initial-div {
-    height: 60vh;
+    height: 80vh;
   }
 
   .input-div {

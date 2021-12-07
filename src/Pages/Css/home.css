@@ -627,7 +627,7 @@ main section .pagination-container h4 {
     display: none;
   }
    nav .drawer-navigation-active {
-    width: 40%;
+    width: 50%;
   }
   /* menu area */
 
@@ -669,7 +669,7 @@ main section .pagination-container h4 {
   }
 
   nav .drawer-navigation-active {
-    width: 60%;
+    width: 70%;
   }
 
   nav .main-nav-menu ul,

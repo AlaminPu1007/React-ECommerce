@@ -23,7 +23,7 @@ const Footer = () => {
             </a>
             <a href="tel:555-555-5555">
               <BsFillTelephoneFill size={20} className="footer-icon" />
-              <p>+880 19-99989100</p>
+              <p>+880 19-86221266</p>
             </a>
             <a
               href="http://maps.google.com/?q=1200 Mirpur-1, Dhaka-1216"
