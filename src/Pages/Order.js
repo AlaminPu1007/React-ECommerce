@@ -26,7 +26,7 @@ const Order = () => {
           >
             {/* name division */}
             <div className="first-last-name">
-              <div style={{ width: "45%" }}>
+              <div className="name-input">
                 <label for="first-name">First Name</label>
                 <input
                   type="text"
@@ -38,7 +38,7 @@ const Order = () => {
                 />
               </div>
               <div style={{ width: "10%" }}></div>
-              <div style={{ width: "45%" }}>
+              <div className="name-input">
                 <label for="Last-name">Last Name</label>
                 <input
                   type="text"
@@ -162,8 +162,8 @@ const Order = () => {
               <div style={{ display: "flex", alignItems: "center" }}>
                 <input checked type="radio" id="Payment System" />
                 <p className="country-name">Cash on delivery</p>
-              </div> 
-            </div> 
+              </div>
+            </div>
             <br />
             <div className="place-order-button">
               <button className="place-button">Place order</button>

@@ -9,7 +9,7 @@ import NotFound from "./component/NotFound";
 import Mens from "./Pages/category/Mens";
 import Women from "./Pages/category/Women";
 import Child from "./Pages/category/Child";
-import { Routes, Route, Navigate, Outlet, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 //Auth screen
 import Login from "./Pages/authentication/Login";
 import Register from "./Pages/authentication/Register";
@@ -24,33 +24,28 @@ import FavoriteList from "./Pages/dashboardComponent/FavoriteList";
 import ScrollToTop from "./component/ScrollToTop";
 //import context
 import { Provider as AuthProvider } from "./context/AuthContext";
-import { Context as AuthContext } from "./context/AuthContext";
-
-const PrivateRoutes = () => {
-  const location = useLocation();
-    const {
-      state: { token },
-    } = useContext(AuthContext);
-
-  return token ? (
-    <Outlet />
-  ) : (
-    <Navigate to="/login" replace state={{ from: location }} />
-  );
-};
+// import { Context as AuthContext } from "./context/AuthContext";
+//import private route
+import PrivateRoute from "./component/PrivateRoute";
 
 const App = () => {
-  const {
-    state: { token },
-  } = useContext(AuthContext);
+  // const {
+  //   state: { token },
+  // } = useContext(AuthContext);
   return (
     <div className="App">
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Dashboard />} />
         {/* Dashboard component screen */}
-        <Route path="/cart-list" element={<CarList />} />
-        <Route path="/favorite-list" element={<FavoriteList />} />
+
+        {/* Define protected route */}
+        <Route element={<PrivateRoute />}>
+          <Route path="/cart-list" element={<CarList />} />
+          <Route path="/favorite-list" element={<FavoriteList />} />
+        </Route>
+        {/* Define protected route */}
+
         {/* category pages */}
         <Route path="/men" element={<Mens />} />
         <Route path="/wo-men" element={<Women />} />

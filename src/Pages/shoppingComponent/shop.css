@@ -91,7 +91,7 @@
   text-decoration: none;
 }
 
-.shop-container .shop-details .order-number .order-button { 
+.shop-container .shop-details .order-number .order-button {
   background-color: #7180df;
   border: none;
   color: white;
@@ -137,6 +137,9 @@
   display: flex;
   /* justify-content: space-between; */
   align-items: center;
+}
+.order-container .order-main-container .first-last-name .name-input {
+  width: 45%;
 }
 
 .order-container .order-main-container input[type="email"],
@@ -223,6 +226,19 @@ select {
     flex-direction: column;
   }
 
+  .order-container .order-main-container .first-last-name {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .order-container .order-main-container .first-last-name .name-input {
+    width: 100%;
+  }
+
+  .order-container .order-main-container {
+    width: 80%;
+  }
+
   .shop-container .shop-details-container,
   .shop-container .shop-image-div {
     width: 100%;
@@ -245,12 +261,12 @@ select {
     padding: 10px 0;
   }
   .order-container .order-main-container .place-order-button {
-  margin-bottom: 10px;
-}
-.order-container .order-main-container .place-button {
-  padding: 10px 50px;
-  font-size: 14px;
-  font-weight: 500;
-  margin-top: 10px;
-}
+    margin-bottom: 10px;
+  }
+  .order-container .order-main-container .place-button {
+    padding: 10px 50px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 10px;
+  }
 }

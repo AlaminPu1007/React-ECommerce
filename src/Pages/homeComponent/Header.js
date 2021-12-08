@@ -319,7 +319,7 @@ const Header = ({ active }) => {
                   <p>Contact</p>
                 </Link>
               </li>
-              <li className="before-drawer-icon-text">
+              <li className="before-drawer-icon-text before-drawer-icon-text-login">
                 <Link to="/login" className="drawer-icon-text">
                   <AiOutlineLogin color="#FFF" size={22} />
                   <p>Login</p>
