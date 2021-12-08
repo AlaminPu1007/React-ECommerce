@@ -24,43 +24,45 @@ const Login = () => {
   return (
     <div>
       {/* Header Component */}
-      <Header active={0} /> 
+      <Header active={0} />
       {/* Header Component */}
       <div className="initial-div">
-        <div className="input-div">
-          <h3>Sign In</h3>
-          <form onSubmit={handleSubmit}>
-            {/* <form action="#"> */}
-            <label className="label-style">E-Mail</label>
-            <input
-              placeholder="Email"
-              value={email}
-              onChange={emailChange}
-              type="email"
-              required
-            />
+        <div className="before-input">
+          <div className="input-div">
+            <h3>Sign In</h3>
+            <form onSubmit={handleSubmit}>
+              {/* <form action="#"> */}
+              <label className="label-style">E-Mail</label>
+              <input
+                placeholder="Email"
+                value={email}
+                onChange={emailChange}
+                type="email"
+                required
+              />
 
-            <label className="label-style">Password</label>
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={passwordChange}
-              min="6"
-              required
-            />
-            {/* {loginError ? <span className="Login-Error">{loginError}</span> : null} */}
-            <br />
-            <br />
-            <button className="button-style">Sign In</button>
-
-            <div>
+              <label className="label-style">Password</label>
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={passwordChange}
+                min="6"
+                required
+              />
+              {/* {loginError ? <span className="Login-Error">{loginError}</span> : null} */}
               <br />
-              <Link className="link-style-login" to="/register">
-                Haven't any account? sign up
-              </Link>
-            </div>
-          </form>
+              <br />
+              <button className="button-style">Sign In</button>
+
+              <div>
+                <br />
+                <Link className="link-style-login" to="/register">
+                  Haven't any account? sign up
+                </Link>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
       {/* Footer Component */}
