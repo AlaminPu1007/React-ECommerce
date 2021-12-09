@@ -3,7 +3,7 @@ import "./shoppingComponent/shop.css";
 import { Link, useParams } from "react-router-dom";
 import DemoCollection from "../jsonFile/DemoCollection.json";
 import Header from "./homeComponent/Header";
-import Footer from "./homeComponent/Footer";
+import Footer from "./homeComponent/Footer"; 
 
 const Order = () => {
   let { id } = useParams();

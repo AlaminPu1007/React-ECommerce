@@ -738,6 +738,7 @@ main section .pagination-container h4 {
   /* footer section */
   footer section .footer-sections {
     grid-template-columns: repeat(1, 1fr);
+    /* border: 1px solid; */
   }
   /* footer section */
 }

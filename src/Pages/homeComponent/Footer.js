@@ -9,13 +9,14 @@ import { BsFillTelephoneFill, BsFacebook, BsPersonPlus } from "react-icons/bs";
 import { VscAccount } from "react-icons/vsc";
 import { MdLocationOn } from "react-icons/md";
 import { Link } from "react-router-dom";
+import '../Css/home.css';
 
 const Footer = () => {
   return (
     <footer>
       <section>
         <div className="footer-sections">
-          <div className="footer-section">
+          <div className="footer-section"> 
             <h1>Contact Us</h1>
             <a href="mailto:support@ecommerce.com">
               <AiFillMail size={20} className="footer-icon" />
