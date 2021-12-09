@@ -26,9 +26,9 @@ Log in and sign up
 /* login , sign up css */
 
 .initial-div {
-   /* Magic here- for center a div */
+  /* Magic here- for center a div */
   /* height: 100vh; */
-  height: 100%; 
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -83,6 +83,12 @@ input[type="password"]:focus {
 .label-style {
   float: left;
   color: #6a6867;
+}
+
+.initial-div .before-input .input-div .forget-password {
+  text-align: left;
+  padding: 5px 0 0 5px;
+  margin-bottom: 10px;
 }
 
 .Login-Error {

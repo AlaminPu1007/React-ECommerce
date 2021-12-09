@@ -52,7 +52,9 @@ const Login = () => {
               />
               {/* {loginError ? <span className="Login-Error">{loginError}</span> : null} */}
               <br />
-              <br />
+              <div className="forget-password">
+                <Link to="/forget">Forget password?</Link>
+              </div>
               <button className="button-style">Sign In</button>
 
               <div>

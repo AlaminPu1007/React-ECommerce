@@ -20,6 +20,9 @@ import Order from "./Pages/Order";
 //Dashboard component
 import CarList from "./Pages/dashboardComponent/CarList";
 import FavoriteList from "./Pages/dashboardComponent/FavoriteList";
+import Blog from "./Pages/dashboardComponent/Blog";
+import About from "./Pages/dashboardComponent/About";
+import Contact from "./Pages/dashboardComponent/Contact";
 //This function return every page at initial position
 import ScrollToTop from "./component/ScrollToTop";
 //import context
@@ -59,6 +62,10 @@ const App = () => {
         {/* Shopping page */}
         <Route path="/shop/:id" element={<Shopping />} />
         <Route path="/order/:id" element={<Order />} />
+        {/* Dashboard pages */}
+        <Route path="/blog" element={<Blog/>}/>
+        <Route path="/about" element={<About/>}/>
+        <Route path="/contact" element={<Contact/>}/>
         {/* not found route */}
         <Route path="*" element={<NotFound />} />
       </Routes>

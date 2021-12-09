@@ -181,6 +181,7 @@ select {
   color: #6f6f6f;
   border: 1px solid #d3d0d0;
   font-size: 15px;
+  background-color: #fff;
 }
 
 .order-container .order-main-container #district-name option {

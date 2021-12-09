@@ -104,7 +104,7 @@ const Header = ({ active }) => {
             <ul>
               <li className="sub-menu-parent">
                 <div style={{ display: "flex", alignItems: "center" }}>
-                  <Link onClick={() => LiTextColorFunction(1)} to="/">
+                  <Link to="/">
                     Home
                   </Link>
                   {/* <AiFillCaretDown
@@ -129,7 +129,7 @@ const Header = ({ active }) => {
               </li>
               <li className="sub-menu-parent">
                 <div style={{ display: "flex", alignItems: "center" }}>
-                  <Link onClick={() => LiTextColorFunction(2)} to="/men">
+                  <Link to="/men">
                     Category
                   </Link>
                   <AiFillCaretDown
@@ -148,27 +148,27 @@ const Header = ({ active }) => {
                   </li>
                 </ul>
               </li>
-              <li className="sub-menu-parent">
+              {/* <li className="sub-menu-parent">
                 <div style={{ display: "flex", alignItems: "center" }}>
-                  <Link onClick={() => LiTextColorFunction(3)} to="/">
+                  <Link to="/">
                     Features
                   </Link>
-                  {/* <AiFillCaretDown
+                  <AiFillCaretDown
                     color={liTextColor === 3 ? "#888dc4" : "#6a6867"}
-                  /> */}
+                  />
                 </div>
-                {/* <ul className="sub-menu">
+                <ul className="sub-menu">
                   <li>
                     <Link to="/">Sub Item 1</Link>
                   </li>
                   <li>
                     <Link to="/">Sub Item 2</Link>
                   </li>
-                </ul> */}
-              </li>
+                </ul>
+              </li> */}
               <li className="sub-menu-parent">
                 <div style={{ display: "flex", alignItems: "center" }}>
-                  <Link onClick={() => LiTextColorFunction(4)} to="/">
+                  <Link to="/blog">
                     Blog
                   </Link>
                   {/* <AiFillCaretDown
@@ -178,7 +178,7 @@ const Header = ({ active }) => {
               </li>
               <li className="sub-menu-parent">
                 <div style={{ display: "flex", alignItems: "center" }}>
-                  <Link onClick={() => LiTextColorFunction(5)} to="/about">
+                  <Link to="/about">
                     About
                   </Link>
                   {/* <AiFillCaretDown
@@ -188,7 +188,7 @@ const Header = ({ active }) => {
               </li>
               <li className="sub-menu-parent">
                 <div style={{ display: "flex", alignItems: "center" }}>
-                  <Link onClick={() => LiTextColorFunction(6)} to="/">
+                  <Link to="/contact">
                     Contact
                   </Link>
                   {/* <AiFillCaretDown
@@ -295,26 +295,26 @@ const Header = ({ active }) => {
                 </li>
               </div>
               {/* category menu sub menu */}
-              <li className="before-drawer-icon-text">
+              {/* <li className="before-drawer-icon-text">
                 <Link to="/" className="drawer-icon-text">
                   <MdFeaturedPlayList color="#FFF" size={22} />
                   <p>Features</p>
                 </Link>
-              </li>
+              </li> */}
               <li className="before-drawer-icon-text">
-                <Link to="/" className="drawer-icon-text">
+                <Link to="/blog" className="drawer-icon-text">
                   <FaBloggerB color="#FFF" size={22} />
                   <p>Blog</p>
                 </Link>
               </li>
               <li className="before-drawer-icon-text">
-                <Link to="/" className="drawer-icon-text">
+                <Link to="/about" className="drawer-icon-text">
                   <AiFillExclamationCircle color="#FFF" size={22} />
                   <p>About</p>
                 </Link>
               </li>
               <li className="before-drawer-icon-text">
-                <Link to="/" className="drawer-icon-text">
+                <Link to="/contact" className="drawer-icon-text">
                   <MdPermContactCalendar color="#FFF" size={22} />
                   <p>Contact</p>
                 </Link>
