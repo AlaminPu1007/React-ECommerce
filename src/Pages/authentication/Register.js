@@ -1,10 +1,21 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import Header from '../homeComponent/Header';
-import Footer from '../homeComponent/Footer';
+import React, {
+  useState,
+  useContext,
+  useEffect,
+  useCallback,
+  useRef,
+} from "react";
+import { Link, useLocation } from "react-router-dom";
+import Header from "../homeComponent/Header";
+import Footer from "../homeComponent/Footer";
 import "./css/auth.css";
+import { Context as AuthContext } from "../../context/AuthContext";
 
 const Register = () => {
+  const {
+    state: { loginError, emailError },
+    Register,
+  } = useContext(AuthContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,8 +34,9 @@ const Register = () => {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = () => {
-    alert("your form is submitted!");
+  const handleSubmit = (e) => {
+    Register({ name, email, password });
+    e.preventDefault();
   };
 
   return (
@@ -55,6 +67,7 @@ const Register = () => {
                 value={email}
                 onChange={emailChange}
                 required
+                style={emailError ? { border: "1px solid red" } : null}
               />
 
               <label className="label-style">Password</label>
@@ -66,8 +79,11 @@ const Register = () => {
                 min="6"
                 required
               />
-              {/* {loginError ? <span className="Login-Error">{loginError}</span> : null} */}
+
               <br />
+              {loginError ? (
+                <span className="Login-Error">{loginError}</span>
+              ) : null}
               <br />
               <button className="button-style">Sign Up</button>
               <div>

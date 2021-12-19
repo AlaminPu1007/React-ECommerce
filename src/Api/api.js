@@ -3,7 +3,7 @@ import axios from "axios";
 
 const instance = axios.create({
   //https://mmapi.devech.com/
-  baseURL: "http://localhost:3300/api/",
+  baseURL: "http://localhost:5000/api/",
 });
 
 instance.interceptors.request.use(
