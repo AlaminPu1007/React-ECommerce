@@ -136,7 +136,7 @@ const SearchResult = () => {
                       style={{
                         display: "flex",
                         justifyContent: "center",
-                        alignItems: "center",
+                        alignItems: "center", 
                       }}
                     >
                       <Link
@@ -151,6 +151,7 @@ const SearchResult = () => {
               );
             })}
           </div>
+          {/* If user search result is not found */}
           {copyItem ? null : <p>No Result if fond!</p>}
         </section>
         {/* Search section */}
