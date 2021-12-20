@@ -12,6 +12,7 @@ import Header from "./homeComponent/Header";
 import Footer from "./homeComponent/Footer";
 import "./Css/home.css";
 
+let copyItem = 0;
 let filtered = [];
 
 const SearchResult = () => {
@@ -33,12 +34,12 @@ const SearchResult = () => {
       // );
 
       filtered = DemoCollection.filter((value) => {
-        return (
-          value.description.toLowerCase().match(new RegExp(search, "g")) 
-        );
+        return value.description.toLowerCase().match(new RegExp(search, "g"));
       });
     }
   });
+
+  console.log(search);
 
   // toastify message
   const cartNotify = () => toast("has been added on your cart list");
@@ -85,236 +86,74 @@ const SearchResult = () => {
       {/* define toastify at initial point */}
       <ToastContainer />
       <Header />
-      <p>
-        your search result page here! {searchedValue} {filtered.length}
-      </p>
       {/* Main Body part start here */}
-      <main style={{ position: "relation", padding: "30px 0 0 0" }}>
-        {/* Men section */}
+      <main style={{ position: "relation", padding: "30px 0" }}>
+        {/* Search section */}
         <section className="section-style">
           <div className="category-title">
-            <h1>Men Collection</h1>
+            <h1>Your search results</h1>
           </div>
           <div className="men-initial-container">
-            {filtered.length ? (
-              filtered.map((item, index) => {
-                return item.category === "men" ? (
-                  // index < menFirstIndex + 6 ? (
-                  <div key={item.id} className="men-containers">
-                    <div className="men-container">
-                      <div className="image-icon">
-                        <img
-                          src={item.image}
-                          alt="image"
-                          className="men-image-style"
+            {DemoCollection.filter((val) => {
+              if (search == "") {
+                return null;
+              } else if (
+                val.description.toLowerCase().includes(search.toLowerCase())
+              ) {
+                copyItem = val;
+                return val;
+              }
+            }).map((item, index) => {
+              return (
+                <div key={item.id} className="men-containers">
+                  <div className="men-container">
+                    <div className="image-icon">
+                      <img
+                        src={item.image}
+                        alt="image"
+                        className="men-image-style"
+                      />
+                      <div className="icon-style">
+                        <BsFillCartFill
+                          color="#487ab1"
+                          size={28}
+                          className="cart-icon"
+                          onClick={cartNotify}
                         />
-                        <div className="icon-style">
-                          <BsFillCartFill
-                            color="#487ab1"
-                            size={28}
-                            className="cart-icon"
-                            onClick={cartNotify}
-                          />
-                          <MdFavorite
-                            color="#487ab1"
-                            size={30}
-                            className="fav-icon"
-                            onClick={favNotify}
-                          />
-                        </div>
-                      </div>
-
-                      <h3>{item.description}</h3>
-                      <p>Rating: {item.rating}</p>
-                      <p>Price: {item.price}</p>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                        }}
-                      >
-                        <Link
-                          to={`/shop/${item.id}`}
-                          className="Button shop-now-button"
-                        >
-                          Shop now
-                        </Link>
+                        <MdFavorite
+                          color="#487ab1"
+                          size={30}
+                          className="fav-icon"
+                          onClick={favNotify}
+                        />
                       </div>
                     </div>
-                  </div>
-                ) : //) : null
-                null;
-              })
-            ) : (
-              <div>
-                <p>no result is found</p>
-              </div>
-            )}
-          </div>
-          {/* <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <button onClick={NavigateToMen} className="Button more-button">
-              more items
-            </button>
-          </div> */}
-        </section>
-        {/* Men section */}
-        {/* Wo-Men section */}
-        <section className="section-style">
-          <div className="category-title">
-            <h1>Wo-men Collection</h1>
-          </div>
-          <div className="men-initial-container">
-            {filtered.length ? (
-              filtered.map((item, index) => {
-                return item.category === "wo-men" ? (
-                  //index < woMenFirstIndex + 6 ? (
-                  <div key={item.id} className="men-containers">
-                    <div className="men-container">
-                      <div className="image-icon">
-                        <img
-                          src={item.image}
-                          alt="image"
-                          className="men-image-style"
-                        />
-                        <div className="icon-style">
-                          <BsFillCartFill
-                            color="#487ab1"
-                            size={28}
-                            className="cart-icon"
-                            onClick={cartNotify}
-                          />
-                          <MdFavorite
-                            color="#487ab1"
-                            size={30}
-                            className="fav-icon"
-                            onClick={favNotify}
-                          />
-                        </div>
-                      </div>
 
-                      <h3>{item.description}</h3>
-                      <p>Rating: {item.rating}</p>
-                      <p>Price: {item.price}</p>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                        }}
+                    <h3>{item.description}</h3>
+                    <p>Rating: {item.rating}</p>
+                    <p>Price: {item.price}</p>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Link
+                        to={`/shop/${item.id}`}
+                        className="Button shop-now-button"
                       >
-                        <Link
-                          to={`/shop/${item.id}`}
-                          className="Button shop-now-button"
-                        >
-                          Shop now
-                        </Link>
-                      </div>
+                        Shop now
+                      </Link>
                     </div>
                   </div>
-                ) : // ) : null
-                null;
-              })
-            ) : (
-              <div>
-                <p>no result is found</p>
-              </div>
-            )}
+                </div>
+              );
+            })}
           </div>
-          {/* <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <button onClick={NavigateToWoMen} className="Button more-button">
-              more items
-            </button>
-          </div> */}
+          {copyItem ? null : <p>No Result if fond!</p>}
         </section>
-        {/* Wo-Men section */}
-        {/* Child section */}
-        <section className="section-style" style={{ paddingBottom: "2%" }}>
-          <div className="category-title">
-            <h1>Child Collection</h1>
-          </div>
-          <div className="men-initial-container">
-            {filtered.length ? (
-              filtered.map((item, index) => {
-                return item.category === "child" ? (
-                  // index < childFirstIndex + 6 ? (
-                  <div key={item.id} className="men-containers">
-                    <div className="men-container">
-                      <div className="image-icon">
-                        <img
-                          src={item.image}
-                          alt="image"
-                          className="men-image-style"
-                        />
-                        <div className="icon-style">
-                          <BsFillCartFill
-                            color="#487ab1"
-                            size={28}
-                            className="cart-icon"
-                            onClick={cartNotify}
-                          />
-                          <MdFavorite
-                            color="#487ab1"
-                            size={30}
-                            className="fav-icon"
-                            onClick={favNotify}
-                          />
-                        </div>
-                      </div>
-
-                      <h3>{item.description}</h3>
-                      <p>Rating: {item.rating}</p>
-                      <p>Price: {item.price}</p>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                        }}
-                      >
-                        <Link
-                          to={`/shop/${item.id}`}
-                          className="Button shop-now-button"
-                        >
-                          Shop now
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                ) : //) : null
-                null;
-              })
-            ) : (
-              <div>
-                <p>no result is found</p>
-              </div>
-            )}
-          </div>
-          {/* <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <button onClick={NavigateToChild} className="Button more-button">
-              more items
-            </button>
-          </div> */}
-        </section>
-        {/* Child section */}
+        {/* Search section */}
       </main>
       {/* Main Body part start here */}
       <Footer />

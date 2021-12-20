@@ -113,6 +113,12 @@ const Body = () => {
   const shopFunction = () => {
     alert("you click on shopping page");
   };
+  let some = 0;
+  let search = "Foreign";
+  // some = DemoCollection.filter((val)=>{
+  //   some = val.description.toLowerCase().includes(search.toLowerCase());
+
+  // }).map(i=> console.log(i));
 
   return (
     <div className="body-container">
@@ -390,6 +396,26 @@ const Body = () => {
           </div>
         </section>
         {/* Child section */}
+        <section className="section-style">
+          <p>some</p>
+          {DemoCollection.filter((val) => {
+            if (search == "") {
+              return val;
+            } else if (
+              val.description.toLowerCase().includes(search.toLowerCase())
+            ) {
+              return val;
+            }
+          }).map((item, index) => {
+            console.log(item,search)
+            return (
+              <div>
+                <p>{item.description}</p>
+                <p>some</p>
+              </div>
+            );
+          })}
+        </section>
       </main>
       {/* Main Body part start here */}
     </div>
