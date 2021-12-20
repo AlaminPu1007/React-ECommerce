@@ -2,8 +2,7 @@ import axios from "axios";
 // import AsyncStorage from "@react-native-community/async-storage";
 
 const instance = axios.create({
-  //https://mmapi.devech.com/
-  baseURL: "http://localhost:5000/api/",
+  baseURL: "http://localhost:5000/api",
 });
 
 instance.interceptors.request.use(

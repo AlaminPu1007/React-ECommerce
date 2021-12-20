@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "./App.css";
 import Dashboard from "./Pages/Dashboard";
 // Search Result page
@@ -27,14 +27,19 @@ import Contact from "./Pages/dashboardComponent/Contact";
 import ScrollToTop from "./component/ScrollToTop";
 //import context
 import { Provider as AuthProvider } from "./context/AuthContext";
-// import { Context as AuthContext } from "./context/AuthContext";
+import { Context as AuthContext } from "./context/AuthContext";
 //import private route
 import PrivateRoute from "./component/PrivateRoute";
 
 const App = () => {
-  // const {
-  //   state: { token },
-  // } = useContext(AuthContext);
+  const {
+    state: { token },
+    AutomaticSignIn,
+  } = useContext(AuthContext);
+  useEffect(() => {
+    AutomaticSignIn();
+  }, []);
+  console.log(token);
   return (
     <div className="App">
       <ScrollToTop />
@@ -63,9 +68,9 @@ const App = () => {
         <Route path="/shop/:id" element={<Shopping />} />
         <Route path="/order/:id" element={<Order />} />
         {/* Dashboard pages */}
-        <Route path="/blog" element={<Blog/>}/>
-        <Route path="/about" element={<About/>}/>
-        <Route path="/contact" element={<Contact/>}/>
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
         {/* not found route */}
         <Route path="*" element={<NotFound />} />
       </Routes>

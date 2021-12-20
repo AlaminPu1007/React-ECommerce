@@ -17,57 +17,113 @@ const reducer = (state, action) => {
     //email error
     case "email_error":
       return { ...state, emailError: action.payload };
+    //name error
+    case "name_error":
+      return { ...state, nameError: action.payload };
+    //clear all registration method
+    case "clear_Registration_Error":
+      return { ...state, nameError: false, emailError: false };
+    // Store token value
+    case "Store_Token":
+      return { ...state, token: action.payload };
+    // Define loading or not
+    case 'loading_spinner': 
+      return {...state, loading_button: action.payload};
 
     default:
       return state;
   }
 };
 
-const Register = (dispatch) => {
+const AutomaticSignIn = (dispatch) => {
   const navigate = useNavigate();
-  return async ({ name, email, password }) => {
-    try {
-      const response = await api.post("/auth/register", {
-        name,
-        email,
-        password,
-      });
-      console.log(response, "response\n");
-
-      if (response.data.message === "Account created successfully") {
-        await localStorage.setItem("token", response.data.token);
-        dispatch({ type: "get_token", payload: response.data.token });
-        navigate("/blog");
-      } else if (response.data === "This email is already exist") {
-        dispatch({ type: "email_error", payload: true });
-        dispatch({ type: "Auth_LoginError", payload: response.data });
-      } else {
-        dispatch({ type: "Auth_LoginError", payload: response.data });
-      }
-    } catch (err) {
-      dispatch({ type: "Auth_LoginError", payload: err.message });
-      console.log(err.message);
+  return () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/");
+      dispatch({ type: "Store_Token", payload: token });
+    } else {
+      navigate("/login");
+      dispatch({ type: "Store_Token", payload: "" });
     }
   };
 };
 
-const Login = (dispatch) => {
-  return async ({ email, password }) => {
-    try {
-      const response = await api.post("/auth/login", { email, password });
+const clearRegistrationError = (dispatch) => {
+  return () => {
+    dispatch({ type: "clear_Registration_Error" });
+  };
+};
 
-      if (response.data.message === "login in successfully") {
+const RegisterContext = (dispatch) => {
+  // This method can help to navigate another page after create account successfully
+  const navigate = useNavigate();
+  return async ({ registerName, registerEmail, registerPassword }) => {
+    //Remove space from first and last
+    const name = registerName.trim();
+    const email = registerEmail;
+    const password = registerPassword;
+
+    //loading a button
+    dispatch({ type: "loading_spinner", payload: true });
+
+    // Clear all error whenever user try to registration
+    dispatch({ type: "clear_Registration_Error" });
+
+    try {
+     
+      const response = await api.post("/users/register", {
+        name,
+        email,
+        password,
+      });
+
+      if (response.data.message === "Account created successfully") {
         await localStorage.setItem("token", response.data.token);
         dispatch({ type: "get_token", payload: response.data.token });
-        // history.push("/");
+        navigate("/login");
+      } else if (response.data === "This email is already exist") {
+        dispatch({ type: "email_error", payload: true });
+        dispatch({ type: "Auth_LoginError", payload: response.data });
+      } else if (
+        response.data === `"name" length must be at least 3 characters long`
+      ) {
+        dispatch({ type: "name_error", payload: true });
+        dispatch({ type: "Auth_LoginError", payload: "Name is to short" });
       } else {
-        if (response.data === "This email is already exist") {
-          dispatch({ type: "email_error", payload: true });
-        }
-        dispatch({ type: "get_LoginError", payload: response.data });
+        dispatch({ type: "Auth_LoginError", payload: response.data });
       }
+      dispatch({ type: "loading_spinner", payload: false });
+    } catch (err) {
+      dispatch({ type: "Auth_LoginError", payload: err.message });
+      dispatch({ type: "loading_spinner", payload: false });
+      // console.log(err.message);
+    }
+  };
+};
+
+const LoginContext = (dispatch) => {
+  const navigate = useNavigate();
+  return async ({ email, password }) => {
+    //loading a button
+    dispatch({ type: "loading_spinner", payload: true });
+
+    // Clear all error whenever user try to registration
+    dispatch({ type: "clear_Registration_Error" });
+    try {
+      const response = await api.post("/users/signin", { email, password });
+
+      if (response.data.message === "login successfully") {
+        await localStorage.setItem("token", response.data.token);
+        dispatch({ type: "get_token", payload: response.data.token });
+        navigate("/");
+      } else {
+        dispatch({ type: "Auth_LoginError", payload: response.data });
+      }
+      dispatch({ type: "loading_spinner", payload: false });
     } catch (err) {
       dispatch({ type: "get_LoginError", payload: err.message });
+      dispatch({ type: "loading_spinner", payload: false });
       // console.log(err.message);
     }
   };
@@ -85,11 +141,13 @@ export const { Context, Provider } = createDataContext(
 
   {
     //function name
-    Login,
+    LoginContext,
     //registration function
-    Register,
+    RegisterContext,
     //header pages searched input value
     SearchedInputValue,
+    //check usr is logged or not
+    AutomaticSignIn,
   },
 
   {
@@ -98,5 +156,7 @@ export const { Context, Provider } = createDataContext(
     searchedValue: "",
     loginError: "",
     emailError: false,
+    nameError: false,
+    loading_button: false,
   }
 );

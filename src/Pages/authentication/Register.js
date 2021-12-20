@@ -13,29 +13,48 @@ import { Context as AuthContext } from "../../context/AuthContext";
 
 const Register = () => {
   const {
-    state: { loginError, emailError },
-    Register,
+    state: { loginError, emailError, nameError, loading_button },
+    RegisterContext,
   } = useContext(AuthContext);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [registerName, setName] = useState("");
+  const [registerEmail, setEmail] = useState("");
+  const [registerPassword, setPassword] = useState("");
+  //// Text Input Fill to button Active
+  const [EmailFill, setEmailFill] = useState("");
+  const [PassWordFill, setPassWordFill] = useState("");
+  const [NameFill, setNameFill] = useState("");
 
   //onchange email
   const nameChange = (event) => {
     setName(event.target.value);
+    if (event.target.value.length == 0) {
+      setNameFill(false);
+    } else {
+      setNameFill(true);
+    }
   };
 
   //onchange email
   const emailChange = (event) => {
     setEmail(event.target.value);
+    if (event.target.value.length == 0) {
+      setEmailFill(false);
+    } else {
+      setEmailFill(true);
+    }
   };
   //onchange password
   const passwordChange = (event) => {
     setPassword(event.target.value);
+    if (event.target.value.length < 6) {
+      setPassWordFill(false);
+    } else {
+      setPassWordFill(true);
+    }
   };
 
   const handleSubmit = (e) => {
-    Register({ name, email, password });
+    RegisterContext({ registerName, registerEmail, registerPassword });
     e.preventDefault();
   };
 
@@ -55,16 +74,17 @@ const Register = () => {
               <input
                 type="text"
                 placeholder="Name"
-                value={name}
+                value={registerName}
                 onChange={nameChange}
                 required
+                style={nameError ? { border: "1px solid red" } : null}
               />
 
               <label className="label-style">E-Mail</label>
               <input
                 type="email"
                 placeholder="E-mail"
-                value={email}
+                value={registerEmail}
                 onChange={emailChange}
                 required
                 style={emailError ? { border: "1px solid red" } : null}
@@ -74,7 +94,7 @@ const Register = () => {
               <input
                 type="password"
                 placeholder="Password"
-                value={password}
+                value={registerPassword}
                 onChange={passwordChange}
                 min="6"
                 required
@@ -85,7 +105,27 @@ const Register = () => {
                 <span className="Login-Error">{loginError}</span>
               ) : null}
               <br />
-              <button className="button-style">Sign Up</button>
+              {NameFill && EmailFill && PassWordFill ? (
+                <button className="button-style">
+                  {loading_button ? (
+                    <i
+                      className="fa fa-refresh fa-spin"
+                      style={{ marginRight: "5px" }}
+                    />
+                  ) : (
+                    "Sign Up"
+                  )}
+                </button>
+              ) : (
+                <button
+                  className="button-style"
+                  style={{ backgroundColor: "#999", cursor: "no-drop" }}
+                  disabled={true}
+                >
+                  Sign Up
+                </button>
+              )}
+
               <div>
                 <Link className="link-style-login" to="/login">
                   Have any account? Sign In
