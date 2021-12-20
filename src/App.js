@@ -23,6 +23,7 @@ import FavoriteList from "./Pages/dashboardComponent/FavoriteList";
 import Blog from "./Pages/dashboardComponent/Blog";
 import About from "./Pages/dashboardComponent/About";
 import Contact from "./Pages/dashboardComponent/Contact";
+import Profile from "./Pages/dashboardComponent/Profile";
 //This function return every page at initial position
 import ScrollToTop from "./component/ScrollToTop";
 //import context
@@ -64,6 +65,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forget" element={<Forget />} />
+        <Route path="/profile" element={<Profile />} />
         {/* Shopping page */}
         <Route path="/shop/:id" element={<Shopping />} />
         <Route path="/order/:id" element={<Order />} />

@@ -27,8 +27,8 @@ const reducer = (state, action) => {
     case "Store_Token":
       return { ...state, token: action.payload };
     // Define loading or not
-    case 'loading_spinner': 
-      return {...state, loading_button: action.payload};
+    case "loading_spinner":
+      return { ...state, loading_button: action.payload };
 
     default:
       return state;
@@ -36,16 +36,23 @@ const reducer = (state, action) => {
 };
 
 const AutomaticSignIn = (dispatch) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   return () => {
     const token = localStorage.getItem("token");
     if (token) {
-      navigate("/");
       dispatch({ type: "Store_Token", payload: token });
     } else {
-      navigate("/login");
       dispatch({ type: "Store_Token", payload: "" });
     }
+  };
+};
+
+const LogOutContext = (dispatch) => {
+  const navigate = useNavigate();
+  return () => {
+    const token = localStorage.removeItem("token");
+    dispatch({ type: "Store_Token", payload: token });
+    navigate('/');
   };
 };
 
@@ -71,7 +78,6 @@ const RegisterContext = (dispatch) => {
     dispatch({ type: "clear_Registration_Error" });
 
     try {
-     
       const response = await api.post("/users/register", {
         name,
         email,
@@ -148,6 +154,8 @@ export const { Context, Provider } = createDataContext(
     SearchedInputValue,
     //check usr is logged or not
     AutomaticSignIn,
+    // Logout user
+    LogOutContext,
   },
 
   {

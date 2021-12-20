@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   AiFillMail,
   AiFillTwitterCircle,
@@ -9,14 +9,23 @@ import { BsFillTelephoneFill, BsFacebook, BsPersonPlus } from "react-icons/bs";
 import { VscAccount } from "react-icons/vsc";
 import { MdLocationOn } from "react-icons/md";
 import { Link } from "react-router-dom";
-import '../Css/home.css';
+import "../Css/home.css";
+import { Context as AuthContext } from "../../context/AuthContext";
 
 const Footer = () => {
+  const {
+    state: { token },
+    LogOutContext,
+  } = useContext(AuthContext);
+  // Log out function
+  const LogOutFunction = () => {
+    LogOutContext();
+  };
   return (
     <footer>
       <section>
         <div className="footer-sections">
-          <div className="footer-section"> 
+          <div className="footer-section">
             <h1>Contact Us</h1>
             <a href="mailto:support@ecommerce.com">
               <AiFillMail size={20} className="footer-icon" />
@@ -51,18 +60,36 @@ const Footer = () => {
           </div>
           <div className="footer-section">
             <h1>My Account</h1>
-            <Link to="/login">
-              <VscAccount size={22} className="footer-icon" />
-              <p>Login</p>
-            </Link>
-            <Link to="/register">
-              <BsPersonPlus size={25} className="footer-icon" />
-              <p>Register a account</p>
-            </Link>
-            <Link to="/forget">
-              <AiFillUnlock size={25} className="footer-icon" />
-              <p>Forget password</p>
-            </Link>
+
+            {token ? (
+              <Link to="/login" onClick={LogOutFunction}>
+                <VscAccount size={22} className="footer-icon" />
+                <p>Log Out</p>
+              </Link>
+            ) : (
+              <Link to="/login">
+                <VscAccount size={22} className="footer-icon" />
+                <p>Login</p>
+              </Link>
+            )}
+            {token ? (
+              <Link to="/profile">
+                <BsPersonPlus size={25} className="footer-icon" />
+                <p>Profile</p>
+              </Link>
+            ) : (
+              <Link to="/register">
+                <BsPersonPlus size={25} className="footer-icon" />
+                <p>Register a account</p>
+              </Link>
+            )}
+
+            {token ? (
+              <Link to="/forget">
+                <AiFillUnlock size={25} className="footer-icon" />
+                <p>Forget password</p>
+              </Link>
+            ) : null}
           </div>
         </div>
       </section>

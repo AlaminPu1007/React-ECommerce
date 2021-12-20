@@ -1,4 +1,4 @@
-import React, { useState, useContext,useRef,useEffect } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import "../Css/home.css";
 //boots strap icon
 import { BsSearch, BsFillCartFill } from "react-icons/bs";
@@ -22,15 +22,18 @@ import { GoPerson } from "react-icons/go";
 import { RiWomenLine } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
 import { Context as AuthContext } from "../../context/AuthContext";
-//bring outside click 
+//bring outside click
 // import {DetectOutsideClick} from '../../component/DetectOutsideClick';
 
 const Header = ({ active }) => {
+  const {
+    state: { token },
+    SearchedInputValue,
+  } = useContext(AuthContext);
   //detect outside click
   const ref = useRef(null);
   //detect outside click
   const navigate = useNavigate();
-  const { SearchedInputValue } = useContext(AuthContext);
   // define state for li text color
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [liTextColor, setLiTextColor] = useState(1);
@@ -104,9 +107,7 @@ const Header = ({ active }) => {
             <ul>
               <li className="sub-menu-parent">
                 <div style={{ display: "flex", alignItems: "center" }}>
-                  <Link to="/">
-                    Home
-                  </Link>
+                  <Link to="/">Home</Link>
                   {/* <AiFillCaretDown
                   color={liTextColor === 1 ? "#888dc4" : "#6a6867"}
                 /> */}
@@ -129,9 +130,7 @@ const Header = ({ active }) => {
               </li>
               <li className="sub-menu-parent">
                 <div style={{ display: "flex", alignItems: "center" }}>
-                  <Link to="/men">
-                    Category
-                  </Link>
+                  <Link to="/men">Category</Link>
                   <AiFillCaretDown
                     color={liTextColor === 2 ? "#888dc4" : "#6a6867"}
                   />
@@ -168,9 +167,7 @@ const Header = ({ active }) => {
               </li> */}
               <li className="sub-menu-parent">
                 <div style={{ display: "flex", alignItems: "center" }}>
-                  <Link to="/blog">
-                    Blog
-                  </Link>
+                  <Link to="/blog">Blog</Link>
                   {/* <AiFillCaretDown
                     color={liTextColor === 4 ? "#888dc4" : "#6a6867"}
                   /> */}
@@ -178,9 +175,7 @@ const Header = ({ active }) => {
               </li>
               <li className="sub-menu-parent">
                 <div style={{ display: "flex", alignItems: "center" }}>
-                  <Link to="/about">
-                    About
-                  </Link>
+                  <Link to="/about">About</Link>
                   {/* <AiFillCaretDown
                     color={liTextColor == 5 ? "#888dc4" : "#6a6867"}
                   /> */}
@@ -188,9 +183,7 @@ const Header = ({ active }) => {
               </li>
               <li className="sub-menu-parent">
                 <div style={{ display: "flex", alignItems: "center" }}>
-                  <Link to="/contact">
-                    Contact
-                  </Link>
+                  <Link to="/contact">Contact</Link>
                   {/* <AiFillCaretDown
                     color={liTextColor === 6 ? "#888dc4" : "#6a6867"}
                   /> */}
@@ -226,9 +219,15 @@ const Header = ({ active }) => {
           ) : null}
 
           <div className="icon mobile-hide">
-            <Link className="icon-view" to="/login">
-              <VscAccount size={20} className="menu-icon " />
-            </Link>
+            {token ? (
+              <Link className="icon-view" to="/profile">
+                <VscAccount size={20} className="menu-icon " />
+              </Link>
+            ) : (
+              <Link className="icon-view" to="/login">
+                <VscAccount size={20} className="menu-icon " />
+              </Link>
+            )}
           </div>
           <div className="icon tab-hide">
             <Link className="icon-view" to="/cart-list">
@@ -320,10 +319,17 @@ const Header = ({ active }) => {
                 </Link>
               </li>
               <li className="before-drawer-icon-text before-drawer-icon-text-login">
-                <Link to="/login" className="drawer-icon-text">
-                  <AiOutlineLogin color="#FFF" size={22} />
-                  <p>Login</p>
-                </Link>
+                {token ? (
+                  <Link to="/profile" className="drawer-icon-text">
+                    <AiOutlineLogin color="#FFF" size={22} />
+                    <p>Profile</p>
+                  </Link>
+                ) : (
+                  <Link to="/login" className="drawer-icon-text">
+                    <AiOutlineLogin color="#FFF" size={22} />
+                    <p>Login</p>
+                  </Link>
+                )}
               </li>
             </ul>
           </div>
