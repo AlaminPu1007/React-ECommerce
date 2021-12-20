@@ -137,7 +137,6 @@ const LoginContext = (dispatch) => {
 // from header pages search value
 const SearchedInputValue = (dispatch) => {
   return (value) => {
-    console.log(value);
     dispatch({ type: "searched_value", payload: value });
   };
 };

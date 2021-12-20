@@ -40,7 +40,6 @@ const App = () => {
   useEffect(() => {
     AutomaticSignIn();
   }, []);
-  console.log(token);
   return (
     <div className="App">
       <ScrollToTop />

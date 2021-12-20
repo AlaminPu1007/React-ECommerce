@@ -76,6 +76,16 @@ const Header = ({ active }) => {
   }, [ref]);
   // detect mouse click on outside
 
+  // handle user click on input search box
+  const handleKeypress = (e) => {
+    //it triggers by pressing the enter key
+    if (e.charCode === 13) {
+      return searchValue
+        ? (SearchedInputValue(searchValue), navigate("/search-result"))
+        : null;
+    }
+  };
+
   return (
     <nav ref={ref}>
       <div className="nav-bar">
@@ -204,6 +214,7 @@ const Header = ({ active }) => {
                   type="text"
                   name="search"
                   placeholder="Search.."
+                  onKeyPress={handleKeypress}
                   onChange={(event) => {
                     SearchFunction(event);
                   }}
