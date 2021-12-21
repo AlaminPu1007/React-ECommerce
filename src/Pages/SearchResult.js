@@ -13,7 +13,6 @@ import Footer from "./homeComponent/Footer";
 import "./Css/home.css";
 
 let copyItem = 0;
-let filtered = [];
 
 const SearchResult = () => {
   const navigate = useNavigate();
@@ -26,20 +25,8 @@ const SearchResult = () => {
     if (searchedValue) {
       //without store it inside state, that may case result 0
       setSearch(searchedValue);
-      ///filter searched value
-      // filtered = DemoCollection.filter((entry) =>
-      //   Object.values(entry).some(
-      //     (val) => typeof val === "string" && val.includes(search)
-      //   )
-      // );
-
-      filtered = DemoCollection.filter((value) => {
-        return value.description.toLowerCase().match(new RegExp(search, "g"));
-      });
     }
   });
-
-  console.log(search);
 
   // toastify message
   const cartNotify = () => toast("has been added on your cart list");
@@ -58,33 +45,10 @@ const SearchResult = () => {
     return navigate("/child");
   };
 
-  // find men/wo-emn/child first element index position
-
-  //find men first item
-  //const men = filtered ? filtered.find((i) => i.category === "men") : 0;
-  // find men first index value
-  // const menFirstIndex = filtered
-  //   ? filtered.findIndex((i) => i.id === men.id)
-  //   : 0;
-
-  //find woMen first item
-  // const woMen = filtered ? filtered.find((i) => i.category === "wo-men") : 0;
-  // find men first index value
-  // const woMenFirstIndex = filtered
-  //   ? filtered.findIndex((i) => i.id === woMen.id)
-  //   : 0;
-
-  //find Child first item
-  //const Child = filtered ? filtered.find((i) => i.category === "child") : 0;
-  // find men first index value
-  // const childFirstIndex = filtered
-  //   ? filtered.findIndex((i) => i.id === Child.id)
-  //   : 0;
-
   return (
-    <div>
+    <div className="body-container">
       {/* define toastify at initial point */}
-      <ToastContainer />
+      <ToastContainer className="toast-container" />
       <Header />
       {/* Main Body part start here */}
       <main style={{ position: "relation", padding: "30px 0" }}>
@@ -136,7 +100,7 @@ const SearchResult = () => {
                       style={{
                         display: "flex",
                         justifyContent: "center",
-                        alignItems: "center", 
+                        alignItems: "center",
                       }}
                     >
                       <Link

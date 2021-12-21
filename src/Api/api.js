@@ -11,6 +11,7 @@ instance.interceptors.request.use(
     if (token) {
       config.headers.Authorization = { "x-auth-token": token };
     }
+    console.log(config.headers)
     return config;
   },
 

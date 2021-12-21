@@ -1,25 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import DemoCollection from "../../jsonFile/DemoCollection.json";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import Header from "../homeComponent/Header";
 import Footer from "../homeComponent/Footer";
 import { BsFillCartFill } from "react-icons/bs";
 import { MdFavorite } from "react-icons/md";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
+import { Context as AuthContext } from "../../context/AuthContext";
 import "../Css/home.css";
 //define toastify in react
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Mens = () => {
-  // add to Cart list function
-  const addToCarList = () => {
-    toast("has been added on your cart list");
+  const navigate = useNavigate();
+  const {
+    state: { token, cart_error, cart_id, loginError },
+    AddCarListContext,
+  } = useContext(AuthContext);
+  // Method to add product into cart list
+  const AddToCartList = (product_id) => {
+    if (token) return AddCarListContext({ product_id, token });
+    else navigate("/login");
   };
-  // add to Favorite list function
-  const addToFavList = () => {
-    toast("has been added on your favorite list");
-  };
+
 
   ///pagination useState
   const [currentPage, setCurrentPage] = useState(1);
@@ -93,13 +97,17 @@ const Mens = () => {
                           color="#487ab1"
                           size={28}
                           className="cart-icon"
-                          onClick={addToCarList}
+                          onClick={() => {
+                            AddToCartList(item.id);
+                          }}
                         />
                         <MdFavorite
                           color="#487ab1"
                           size={30}
                           className="fav-icon"
-                          onClick={addToFavList}
+                          onClick={() => {
+                            AddToCartList(item.id);
+                          }}
                         />
                       </div>
                     </div>
@@ -122,6 +130,18 @@ const Mens = () => {
                       </Link>
                     </div>
                   </div>
+                  {cart_error ? (
+                    item.id === cart_id ? (
+                      <p style={{ color: "red", marginBottom: "20px" }}>
+                        {cart_error}
+                      </p>
+                    ) : null
+                  ) : null}
+                  {loginError ? (
+                    <p style={{ color: "red", marginBottom: "20px" }}>
+                      {loginError}
+                    </p>
+                  ) : null}
                 </div>
               ) : null;
             })}

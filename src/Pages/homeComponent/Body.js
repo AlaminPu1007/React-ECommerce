@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext, useEffect } from "react";
 import "../Css/home.css";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import Data from "../../jsonFile/data.json";
@@ -9,10 +9,17 @@ import { useNavigate, Link } from "react-router-dom";
 //define toastify in react
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Context as AuthContext } from "../../context/AuthContext";
 
 const Body = () => {
+  const {
+    state: { token, cart_error, cart_id, loginError },
+    AddCarListContext,
+  } = useContext(AuthContext);
+
   const navigate = useNavigate();
   const [slideIndex, setSlideIndex] = useState(1);
+  const [product_id, setProductId] = useState(null);
 
   // making an auto play slider
   const timeoutRef = useRef(null);
@@ -23,7 +30,7 @@ const Body = () => {
     }
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     resetTimeout();
     timeoutRef.current = setTimeout(
       () =>
@@ -58,9 +65,12 @@ const Body = () => {
     setSlideIndex(index);
   };
 
-  // toastify message
-  const cartNotify = () => toast("has been added on your cart list");
-  const favNotify = () => toast("has been added on your favorite list");
+
+  // Method to add product into cart list
+  const AddToCartList = (product_id) => {
+    if(token) return  AddCarListContext({ product_id, token });
+    else navigate('/login');
+  };
 
   // Men page navigation
   const NavigateToMen = () => {
@@ -108,17 +118,6 @@ const Body = () => {
   const HeaderNavigation = (item) => {
     return navigate(item);
   };
-
-  // going to shopping page
-  const shopFunction = () => {
-    alert("you click on shopping page");
-  };
-  let some = 0;
-  let search = "Foreign";
-  // some = DemoCollection.filter((val)=>{
-  //   some = val.description.toLowerCase().includes(search.toLowerCase());
-
-  // }).map(i=> console.log(i));
 
   return (
     <div className="body-container">
@@ -211,13 +210,17 @@ const Body = () => {
                             color="#487ab1"
                             size={28}
                             className="cart-icon"
-                            onClick={cartNotify}
+                            onClick={() => {
+                              AddToCartList(item.id);
+                            }}
                           />
                           <MdFavorite
                             color="#487ab1"
                             size={30}
                             className="fav-icon"
-                            onClick={favNotify}
+                            onClick={() => {
+                              AddToCartList(item.id);
+                            }}
                           />
                         </div>
                       </div>
@@ -240,6 +243,18 @@ const Body = () => {
                         </Link>
                       </div>
                     </div>
+                    {cart_error ? (
+                      item.id === cart_id ? (
+                        <p style={{ color: "red", marginBottom: "20px" }}>
+                          {cart_error}
+                        </p>
+                      ) : null
+                    ) : null}
+                    {loginError ? (
+                      <p style={{ color: "red", marginBottom: "20px" }}>
+                        {loginError}
+                      </p>
+                    ) : null}
                   </div>
                 ) : null
               ) : null;
@@ -280,13 +295,17 @@ const Body = () => {
                             color="#487ab1"
                             size={28}
                             className="cart-icon"
-                            onClick={cartNotify}
+                            onClick={() => {
+                              AddToCartList(item.id);
+                            }}
                           />
                           <MdFavorite
                             color="#487ab1"
                             size={30}
                             className="fav-icon"
-                            onClick={favNotify}
+                            onClick={() => {
+                              AddToCartList(item.id);
+                            }}
                           />
                         </div>
                       </div>
@@ -309,6 +328,18 @@ const Body = () => {
                         </Link>
                       </div>
                     </div>
+                    {cart_error ? (
+                      item.id === cart_id ? (
+                        <p style={{ color: "red", marginBottom: "20px" }}>
+                          {cart_error}
+                        </p>
+                      ) : null
+                    ) : null}
+                    {loginError ? (
+                      <p style={{ color: "red", marginBottom: "20px" }}>
+                        {loginError}
+                      </p>
+                    ) : null}
                   </div>
                 ) : null
               ) : null;
@@ -349,13 +380,17 @@ const Body = () => {
                             color="#487ab1"
                             size={28}
                             className="cart-icon"
-                            onClick={cartNotify}
+                            onClick={() => {
+                              AddToCartList(item.id);
+                            }}
                           />
                           <MdFavorite
                             color="#487ab1"
                             size={30}
                             className="fav-icon"
-                            onClick={favNotify}
+                            onClick={() => {
+                              AddToCartList(item.id);
+                            }}
                           />
                         </div>
                       </div>
@@ -378,6 +413,18 @@ const Body = () => {
                         </Link>
                       </div>
                     </div>
+                    {cart_error ? (
+                      item.id === cart_id ? (
+                        <p style={{ color: "red", marginBottom: "20px" }}>
+                          {cart_error}
+                        </p>
+                      ) : null
+                    ) : null}
+                    {loginError ? (
+                      <p style={{ color: "red", marginBottom: "20px" }}>
+                        {loginError}
+                      </p>
+                    ) : null}
                   </div>
                 ) : null
               ) : null;
@@ -396,26 +443,6 @@ const Body = () => {
           </div>
         </section>
         {/* Child section */}
-        <section className="section-style">
-          <p>some</p>
-          {DemoCollection.filter((val) => {
-            if (search == "") {
-              return val;
-            } else if (
-              val.description.toLowerCase().includes(search.toLowerCase())
-            ) {
-              return val;
-            }
-          }).map((item, index) => {
-            console.log(item,search)
-            return (
-              <div>
-                <p>{item.description}</p>
-                <p>some</p>
-              </div>
-            );
-          })}
-        </section>
       </main>
       {/* Main Body part start here */}
     </div>
