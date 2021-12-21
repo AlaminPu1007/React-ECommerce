@@ -14,7 +14,7 @@ import { Context as AuthContext } from "../../context/AuthContext";
 const Body = () => {
   const {
     state: { token, cart_error, cart_id, loginError },
-    AddCarListContext,
+    AddCarListContext,clearError,
   } = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -31,6 +31,9 @@ const Body = () => {
   }
 
   useEffect(() => {
+    //clear all error whenever focus this screen if any error is present
+    window.addEventListener("focus", clearError());
+    
     resetTimeout();
     timeoutRef.current = setTimeout(
       () =>

@@ -74,7 +74,7 @@ const LogOutContext = (dispatch) => {
   };
 };
 
-const clearRegistrationError = (dispatch) => {
+const clearError = (dispatch) => {
   return () => {
     dispatch({ type: "clear_Registration_Error" });
   };
@@ -265,6 +265,8 @@ export const { Context, Provider } = createDataContext(
     getAllCarList,
     // Delete cart list method
     DeleteCartListContext,
+    //Clear all error
+    clearError,
   },
 
   {
