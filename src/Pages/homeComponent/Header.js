@@ -29,6 +29,7 @@ const Header = ({ active }) => {
   const {
     state: { token },
     SearchedInputValue,
+    LogOutContext,
   } = useContext(AuthContext);
   //detect outside click
   const ref = useRef(null);
@@ -84,6 +85,10 @@ const Header = ({ active }) => {
         ? (SearchedInputValue(searchValue), navigate("/search-result"))
         : null;
     }
+  };
+
+  const LogOutFunction = () => {
+    LogOutContext();
   };
 
   return (
@@ -305,12 +310,12 @@ const Header = ({ active }) => {
                 </li>
               </div>
               {/* category menu sub menu */}
-              {/* <li className="before-drawer-icon-text">
-                <Link to="/" className="drawer-icon-text">
-                  <MdFeaturedPlayList color="#FFF" size={22} />
-                  <p>Features</p>
+              <li className="before-drawer-icon-text">
+                <Link to="/cart-list" className="drawer-icon-text">
+                  <BsFillCartFill color="#FFF" size={22} />
+                  <p>Cart List</p>
                 </Link>
-              </li> */}
+              </li>
               <li className="before-drawer-icon-text">
                 <Link to="/blog" className="drawer-icon-text">
                   <FaBloggerB color="#FFF" size={22} />
@@ -332,15 +337,28 @@ const Header = ({ active }) => {
               <li className="before-drawer-icon-text before-drawer-icon-text-login">
                 {token ? (
                   <Link to="/profile" className="drawer-icon-text">
-                    <AiOutlineLogin color="#FFF" size={22} />
+                    <VscAccount color="#FFF" size={22} />
                     <p>Profile</p>
                   </Link>
                 ) : (
                   <Link to="/login" className="drawer-icon-text">
-                    <AiOutlineLogin color="#FFF" size={22} />
+                    <VscAccount color="#FFF" size={22} />
                     <p>Login</p>
                   </Link>
                 )}
+              </li>
+              <li style={{marginBottom: '10px'}}>
+                {/* VscAccount */}
+                {token ? (
+                  <Link
+                    to="/"
+                    className="drawer-icon-text"
+                    onClick={LogOutFunction}
+                  >
+                    <AiOutlineLogin color="#FFF" size={22} style={{marginLeft: "-5px"}} />
+                    <p>Log Out</p>
+                  </Link>
+                ) : null}
               </li>
             </ul>
           </div>

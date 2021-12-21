@@ -62,7 +62,7 @@ const Footer = () => {
             <h1>My Account</h1>
 
             {token ? (
-              <Link to="/login" onClick={LogOutFunction}>
+              <Link to="/" onClick={LogOutFunction}>
                 <VscAccount size={22} className="footer-icon" />
                 <p>Log Out</p>
               </Link>
