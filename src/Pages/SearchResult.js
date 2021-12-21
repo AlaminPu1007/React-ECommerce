@@ -17,8 +17,16 @@ let copyItem = 0;
 const SearchResult = () => {
   const navigate = useNavigate();
   const {
-    state: { searchedValue },
+    state: { token, cart_error, cart_id, loginError,searchedValue },AddCarListContext
   } = useContext(AuthContext);
+
+  // Method to add product into cart list
+  const AddToCartList = (product_id) => {
+    if (token) return AddCarListContext({ product_id, token });
+    else navigate("/login");
+  };
+
+
   const [search, setSearch] = useState("");
 
   useEffect(() => {
@@ -30,7 +38,7 @@ const SearchResult = () => {
 
   // toastify message
   const cartNotify = () => toast("has been added on your cart list");
-  const favNotify = () => toast("has been added on your favorite list");
+  const favNotify = () => toast("has been added on your favorite list"); 
 
   // Men page navigation
   const NavigateToMen = () => {
@@ -82,13 +90,17 @@ const SearchResult = () => {
                           color="#487ab1"
                           size={28}
                           className="cart-icon"
-                          onClick={cartNotify}
+                          onClick={() => {
+                            AddToCartList(item.id);
+                          }}
                         />
                         <MdFavorite
                           color="#487ab1"
                           size={30}
                           className="fav-icon"
-                          onClick={favNotify}
+                          onClick={() => {
+                            AddToCartList(item.id);
+                          }}
                         />
                       </div>
                     </div>
@@ -111,6 +123,18 @@ const SearchResult = () => {
                       </Link>
                     </div>
                   </div>
+                  {cart_error ? (
+                    item.id === cart_id ? (
+                      <p style={{ color: "red", marginBottom: "20px" }}>
+                        {cart_error}
+                      </p>
+                    ) : null
+                  ) : null}
+                  {loginError ? (
+                    <p style={{ color: "red", marginBottom: "20px" }}>
+                      {loginError}
+                    </p>
+                  ) : null}
                 </div>
               );
             })}
