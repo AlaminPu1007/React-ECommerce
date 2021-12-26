@@ -11,6 +11,7 @@ import { Context as AuthContext } from "../../context/AuthContext";
 //define toastify in react
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {DynamicTitle} from '../../component/DynamicTitle';
 
 const Child = () => {
   const navigate = useNavigate();
@@ -18,6 +19,14 @@ const Child = () => {
     state: { token, cart_error, cart_id, loginError },
     AddCarListContext,
   } = useContext(AuthContext);
+
+  // Set Page title and meta data
+  useEffect(()=>{
+    DynamicTitle({
+      title: 'Child collection',
+      metaDescription: 'All Child collection here'
+    });
+  },[]);
 
   // Method to add product into cart list
   const AddToCartList = (product_id) => {

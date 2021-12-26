@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import "./shoppingComponent/shop.css";
 import { Link, useParams } from "react-router-dom";
 import DemoCollection from "../jsonFile/DemoCollection.json";
 import Header from "./homeComponent/Header";
 import Footer from "./homeComponent/Footer"; 
+import {DynamicTitle} from '../component/DynamicTitle';
 
 const Order = () => {
+  // Set Page title and meta data
+  useEffect(()=>{
+    DynamicTitle({
+      title: 'Order now',
+      metaDescription: 'Order your product'
+    });
+  },[]);
+
   let { id } = useParams();
   const product = id ? DemoCollection.find((i) => i.id === id) : 0;
   if (!product) {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import DemoCollection from "../../jsonFile/DemoCollection.json";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../homeComponent/Header";
 import Footer from "../homeComponent/Footer";
 import { BsFillCartFill } from "react-icons/bs";
@@ -11,6 +11,7 @@ import "../Css/home.css";
 //define toastify in react
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { DynamicTitle } from "../../component/DynamicTitle";
 
 const Mens = () => {
   const navigate = useNavigate();
@@ -18,12 +19,19 @@ const Mens = () => {
     state: { token, cart_error, cart_id, loginError },
     AddCarListContext,
   } = useContext(AuthContext);
+  // Set Page title and meta data
+  useEffect(() => {
+    DynamicTitle({
+      title: "Men's collection",
+      metaDescription: "All men's collection",
+    });
+  }, []);
+
   // Method to add product into cart list
   const AddToCartList = (product_id) => {
     if (token) return AddCarListContext({ product_id, token });
     else navigate("/login");
   };
-
 
   ///pagination useState
   const [currentPage, setCurrentPage] = useState(1);

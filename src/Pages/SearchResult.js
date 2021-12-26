@@ -11,6 +11,7 @@ import { MdFavorite } from "react-icons/md";
 import Header from "./homeComponent/Header";
 import Footer from "./homeComponent/Footer";
 import "./Css/home.css";
+import {DynamicTitle} from '../component/DynamicTitle';
 
 let copyItem = 0;
 
@@ -19,6 +20,13 @@ const SearchResult = () => {
   const {
     state: { token, cart_error, cart_id, loginError,searchedValue },AddCarListContext
   } = useContext(AuthContext);
+  // Set Page title and meta data
+  useEffect(()=>{
+    DynamicTitle({
+      title: `Your search on ${searchedValue}`,
+      metaDescription: 'your search result is appear here'
+    });
+  },[]);
 
   // Method to add product into cart list
   const AddToCartList = (product_id) => {

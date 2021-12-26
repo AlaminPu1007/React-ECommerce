@@ -10,12 +10,22 @@ import Header from "../homeComponent/Header";
 import Footer from "../homeComponent/Footer";
 import "./css/auth.css";
 import { Context as AuthContext } from "../../context/AuthContext";
+import {DynamicTitle} from '../../component/DynamicTitle';
 
 const Register = () => {
   const {
     state: { loginError, emailError, nameError, loading_button },
     RegisterContext,
   } = useContext(AuthContext);
+
+  // Set Page title and meta data
+  useEffect(()=>{
+    DynamicTitle({
+      title: 'SignUp',
+      metaDescription: 'Sign Up with name, email and password'
+    });
+  },[]);
+
   const [registerName, setName] = useState("");
   const [registerEmail, setEmail] = useState("");
   const [registerPassword, setPassword] = useState("");

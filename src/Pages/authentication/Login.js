@@ -1,15 +1,24 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "../homeComponent/Header";
 import Footer from "../homeComponent/Footer";
 import "./css/auth.css";
 import { Context as AuthContext } from "../../context/AuthContext";
+import {DynamicTitle} from '../../component/DynamicTitle';
 
 const Login = () => {
   const {
     state: { loginError, loading_button },
     LoginContext,
   } = useContext(AuthContext);
+
+  // Set Page title and meta data
+  useEffect(()=>{
+    DynamicTitle({
+      title: 'Sign In',
+      metaDescription: 'Sign in with email and password'
+    });
+  },[]);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

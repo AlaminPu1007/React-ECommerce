@@ -11,6 +11,7 @@ import "../Css/home.css";
 //define toastify in react
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { DynamicTitle } from "../../component/DynamicTitle";
 
 const Women = () => {
   const navigate = useNavigate();
@@ -18,6 +19,14 @@ const Women = () => {
     state: { token, cart_error, cart_id, loginError },
     AddCarListContext,
   } = useContext(AuthContext);
+
+  // Set Page title and meta data
+  useEffect(()=>{
+    DynamicTitle({
+      title: "Women collection",
+      metaDescription: 'All women collection'
+    });
+  },[]);
 
   // Method to add product into cart list
   const AddToCartList = (product_id) => {

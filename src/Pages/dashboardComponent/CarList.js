@@ -1,4 +1,4 @@
-import React, {useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import "../Css/home.css";
 import Header from "../homeComponent/Header";
 import Footer from "../homeComponent/Footer";
@@ -8,6 +8,7 @@ import { Context as AuthContext } from "../../context/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CartItem from "./cartListComponent/CartItem";
+import { DynamicTitle } from "../../component/DynamicTitle";
 
 const CarList = () => {
   const {
@@ -16,6 +17,10 @@ const CarList = () => {
   } = useContext(AuthContext);
   // show user success message whenever they add product to their cart/favorite list
   useEffect(() => {
+    DynamicTitle({
+      title: "Cart list",
+      metaDescription: "All cart list here",
+    });
     getAllCarList(token);
 
     if (success_message) {
