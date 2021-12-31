@@ -4,6 +4,8 @@ This application is build by react js, react-routet v6.
 React: https://reactjs.org/
 React-Router: https://reactrouter.com/
 
+Check with live preview: https://alamin-ecommerce.herokuapp.com/
+
 # key features
 1) signin / signup
 2) paggination
