@@ -33,56 +33,56 @@ import { Context as AuthContext } from "./context/AuthContext";
 import PrivateRoute from "./component/PrivateRoute";
 
 const App = () => {
-  const {
-    state: { token },
-    AutomaticSignIn,
-  } = useContext(AuthContext);
-  useEffect(() => {
-    AutomaticSignIn();
-  }, []);
-  return (
-    <div className="App">
-      <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-        {/* Dashboard component screen */}
+    const {
+        state: { token },
+        AutomaticSignIn,
+    } = useContext(AuthContext);
+    useEffect(() => {
+        AutomaticSignIn();
+    }, []);
+    return (
+        <div className="App">
+            <ScrollToTop />
+            <Routes>
+                <Route path="/" element={<Dashboard />} />
+                {/* Dashboard component screen */}
 
-        {/* Define protected route */}
-        <Route element={<PrivateRoute />}>
-          <Route path="/cart-list" element={<CarList />} />
-          <Route path="/favorite-list" element={<FavoriteList />} />
-        </Route>
-        {/* Define protected route */}
+                {/* Define protected route */}
+                <Route element={<PrivateRoute />}>
+                    <Route path="/cart-list" element={<CarList />} />
+                    <Route path="/favorite-list" element={<FavoriteList />} />
+                </Route>
+                {/* Define protected route */}
 
-        {/* category pages */}
-        <Route path="/men" element={<Mens />} />
-        <Route path="/wo-men" element={<Women />} />
-        <Route path="/child" element={<Child />} />
-        {/* Searched result page */}
-        <Route path="/search-result" element={<SearchResult />} />
-        {/*  Authentication pages */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/forget" element={<Forget />} />
-        <Route path="/profile" element={<Profile />} />
-        {/* Shopping page */}
-        <Route path="/shop/:id" element={<Shopping />} />
-        <Route path="/order/:id" element={<Order />} />
-        {/* Dashboard pages */}
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        {/* not found route */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </div>
-  );
+                {/* category pages */}
+                <Route path="/men" element={<Mens />} />
+                <Route path="/wo-men" element={<Women />} />
+                <Route path="/child" element={<Child />} />
+                {/* Searched result page */}
+                <Route path="/search-result" element={<SearchResult />} />
+                {/*  Authentication pages */}
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/forget" element={<Forget />} />
+                <Route path="/profile" element={<Profile />} />
+                {/* Shopping page */}
+                <Route path="/shop/:id" element={<Shopping />} />
+                <Route path="/order/:id" element={<Order />} />
+                {/* Dashboard pages */}
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+                {/* not found route */}
+                <Route path="*" element={<NotFound />} />
+            </Routes>
+        </div>
+    );
 };
 
 export default () => {
-  return (
-    <AuthProvider>
-      <App />
-    </AuthProvider>
-  );
+    return (
+        <AuthProvider>
+            <App />
+        </AuthProvider>
+    );
 };
