@@ -11,49 +11,55 @@ import CartItem from "./cartListComponent/CartItem";
 import { DynamicTitle } from "../../component/DynamicTitle";
 
 const CarList = () => {
-  const {
-    state: { carList, success_message, token },
-    getAllCarList,
-  } = useContext(AuthContext);
-  // show user success message whenever they add product to their cart/favorite list
-  useEffect(() => {
-    DynamicTitle({
-      title: "Cart list",
-      metaDescription: "All cart list here",
-    });
-    getAllCarList(token);
+    const {
+        state: { carList, success_message, token },
+        getAllCarList,
+    } = useContext(AuthContext);
+    // show user success message whenever they add product to their cart/favorite list
+    useEffect(() => {
+        DynamicTitle({
+            title: "Cart list",
+            metaDescription: "All cart list here",
+        });
+        getAllCarList(token);
 
-    if (success_message) {
-      toast(success_message);
-    }
-  }, [success_message]);
+        if (success_message) {
+            toast(success_message);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [success_message]);
 
-  return (
-    <div className="body-container">
-      {/* define toastify at initial point */}
-      <ToastContainer className="toast-container" />
-      {/* Header Component */}
-      <Header />
-      {/* Header Component */}
-      <main style={{ position: "relation", padding: "30px 0" }}>
-        <section className="section-style">
-          <div className="category-title"></div>
-          <div className="men-initial-container">
-            {carList ? (
-              carList.map((item, index) => {
-                return <CartItem key={item.id} id={item.product_id} />;
-              })
-            ) : (
-              <p>No cart list is found!</p>
-            )}
-          </div>
-        </section>
-      </main>
-      {/* Footer Component */}
-      <Footer />
-      {/* Footer Component */}
-    </div>
-  );
+    return (
+        <div className="body-container">
+            {/* define toastify at initial point */}
+            <ToastContainer className="toast-container" />
+            {/* Header Component */}
+            <Header />
+            {/* Header Component */}
+            <main style={{ position: "relation", padding: "30px 0" }}>
+                <section className="section-style">
+                    <div className="category-title"></div>
+                    <div className="men-initial-container">
+                        {carList ? (
+                            carList.map((item, index) => {
+                                return (
+                                    <CartItem
+                                        key={item.id}
+                                        id={item.product_id}
+                                    />
+                                );
+                            })
+                        ) : (
+                            <p>No cart list is found!</p>
+                        )}
+                    </div>
+                </section>
+            </main>
+            {/* Footer Component */}
+            <Footer />
+            {/* Footer Component */}
+        </div>
+    );
 };
 
 export default CarList;

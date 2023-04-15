@@ -36,7 +36,8 @@ const App = () => {
     const { AutomaticSignIn } = useContext(AuthContext);
     useEffect(() => {
         AutomaticSignIn();
-    }, [AutomaticSignIn]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     return (
         <div className="App">
             <ScrollToTop />
@@ -76,6 +77,7 @@ const App = () => {
     );
 };
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
     return (
         <AuthProvider>

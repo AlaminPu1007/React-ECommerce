@@ -7,449 +7,522 @@ import { BsFillCartFill } from "react-icons/bs";
 import { MdFavorite } from "react-icons/md";
 import { useNavigate, Link } from "react-router-dom";
 //define toastify in react
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Context as AuthContext } from "../../context/AuthContext";
 
 const Body = () => {
-  const {
-    state: { token, cart_error, cart_id, loginError },
-    AddCarListContext,clearError,
-  } = useContext(AuthContext);
+    const {
+        state: { token, cart_error, cart_id, loginError },
+        AddCarListContext,
+        clearError,
+    } = useContext(AuthContext);
 
-  const navigate = useNavigate();
-  const [slideIndex, setSlideIndex] = useState(1);
-  const [product_id, setProductId] = useState(null);
+    const navigate = useNavigate();
+    const [slideIndex, setSlideIndex] = useState(1);
+    // const [product_id, setProductId] = useState(null);
 
-  // making an auto play slider
-  const timeoutRef = useRef(null);
+    // making an auto play slider
+    const timeoutRef = useRef(null);
 
-  function resetTimeout() {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
+    function resetTimeout() {
+        if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+        }
     }
-  }
 
-  useEffect(() => {
-    //clear all error whenever focus this screen if any error is present
-    window.addEventListener("focus", clearError());
-    
-    resetTimeout();
-    timeoutRef.current = setTimeout(
-      () =>
-        setSlideIndex((prevIndex) =>
-          prevIndex === Data.length ? 1 : prevIndex + 1
-        ),
-      3000
-    );
+    useEffect(() => {
+        //clear all error whenever focus this screen if any error is present
+        window.addEventListener("focus", clearError());
 
-    return () => {
-      resetTimeout();
+        resetTimeout();
+        timeoutRef.current = setTimeout(
+            () =>
+                setSlideIndex((prevIndex) =>
+                    prevIndex === Data.length ? 1 : prevIndex + 1
+                ),
+            3000
+        );
+
+        return () => {
+            resetTimeout();
+        };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [slideIndex]);
+
+    const nextSlide = () => {
+        if (slideIndex !== Data.length) {
+            setSlideIndex(slideIndex + 1);
+        } else if (slideIndex === Data.length) {
+            setSlideIndex(1);
+        }
     };
-  }, [slideIndex]);
 
-  const nextSlide = () => {
-    if (slideIndex !== Data.length) {
-      setSlideIndex(slideIndex + 1);
-    } else if (slideIndex === Data.length) {
-      setSlideIndex(1);
-    }
-  };
+    const prevSlide = () => {
+        if (slideIndex !== 1) {
+            setSlideIndex(slideIndex - 1);
+        } else if (slideIndex === 1) {
+            setSlideIndex(Data.length);
+        }
+    };
 
-  const prevSlide = () => {
-    if (slideIndex !== 1) {
-      setSlideIndex(slideIndex - 1);
-    } else if (slideIndex === 1) {
-      setSlideIndex(Data.length);
-    }
-  };
+    const moveDot = (index) => {
+        setSlideIndex(index);
+    };
 
-  const moveDot = (index) => {
-    setSlideIndex(index);
-  };
+    // Method to add product into cart list
+    const AddToCartList = (product_id) => {
+        if (token) return AddCarListContext({ product_id, token });
+        else navigate("/login");
+    };
 
+    // Men page navigation
+    const NavigateToMen = () => {
+        return navigate("/men");
+    };
+    // WoMen page navigation
+    const NavigateToWoMen = () => {
+        return navigate("/wo-men");
+    };
+    // Child page navigation
+    const NavigateToChild = () => {
+        return navigate("/child");
+    };
 
-  // Method to add product into cart list
-  const AddToCartList = (product_id) => {
-    if(token) return  AddCarListContext({ product_id, token });
-    else navigate('/login');
-  };
+    // find men/wo-emn/child first element index position
 
-  // Men page navigation
-  const NavigateToMen = () => {
-    return navigate("/men");
-  };
-  // WoMen page navigation
-  const NavigateToWoMen = () => {
-    return navigate("/wo-men");
-  };
-  // Child page navigation
-  const NavigateToChild = () => {
-    return navigate("/child");
-  };
+    //find men first item
+    const men = DemoCollection
+        ? DemoCollection.find((i) => i.category === "men")
+        : 0;
+    // find men first index value
+    const menFirstIndex = DemoCollection
+        ? DemoCollection.findIndex((i) => i.id === men.id)
+        : 0;
 
-  // find men/wo-emn/child first element index position
+    //find woMen first item
+    const woMen = DemoCollection
+        ? DemoCollection.find((i) => i.category === "wo-men")
+        : 0;
+    // find men first index value
+    const woMenFirstIndex = DemoCollection
+        ? DemoCollection.findIndex((i) => i.id === woMen.id)
+        : 0;
 
-  //find men first item
-  const men = DemoCollection
-    ? DemoCollection.find((i) => i.category === "men")
-    : 0;
-  // find men first index value
-  const menFirstIndex = DemoCollection
-    ? DemoCollection.findIndex((i) => i.id === men.id)
-    : 0;
+    //find Child first item
+    const Child = DemoCollection
+        ? DemoCollection.find((i) => i.category === "child")
+        : 0;
+    // find men first index value
+    const childFirstIndex = DemoCollection
+        ? DemoCollection.findIndex((i) => i.id === Child.id)
+        : 0;
 
-  //find woMen first item
-  const woMen = DemoCollection
-    ? DemoCollection.find((i) => i.category === "wo-men")
-    : 0;
-  // find men first index value
-  const woMenFirstIndex = DemoCollection
-    ? DemoCollection.findIndex((i) => i.id === woMen.id)
-    : 0;
+    // Header Navigation function
+    const HeaderNavigation = (item) => {
+        return navigate(item);
+    };
 
-  //find Child first item
-  const Child = DemoCollection
-    ? DemoCollection.find((i) => i.category === "child")
-    : 0;
-  // find men first index value
-  const childFirstIndex = DemoCollection
-    ? DemoCollection.findIndex((i) => i.id === Child.id)
-    : 0;
+    return (
+        <div className="body-container">
+            {/* define toastify at initial point */}
+            <ToastContainer className="toast-container" />
 
-  // Header Navigation function
-  const HeaderNavigation = (item) => {
-    return navigate(item);
-  };
+            {/* header image slider */}
+            <div style={{ position: "relative" }}>
+                {/* Sliding an image with text */}
+                <div className="image-text-container">
+                    {Data.map((item, index) => {
+                        return (
+                            <div
+                                className={
+                                    slideIndex === index + 1
+                                        ? "image-text-anime"
+                                        : "image-text"
+                                }
+                                key={item.id}
+                            >
+                                <div className="text-div">
+                                    <div className="animation-text-div">
+                                        <h3>{item.type}</h3>
+                                        <h1 style={{ margin: "5px 0" }}>
+                                            {item.arrivals}
+                                        </h1>
+                                        <button
+                                            onClick={() =>
+                                                HeaderNavigation(
+                                                    item.navigation_link
+                                                )
+                                            }
+                                            className="Button"
+                                        >
+                                            {item.button_text}
+                                        </button>
+                                    </div>
+                                </div>
 
-  return (
-    <div className="body-container">
-      {/* define toastify at initial point */}
-      <ToastContainer className="toast-container" />
-
-      {/* header image slider */}
-      <div style={{ position: "relative" }}>
-        {/* Sliding an image with text */}
-        <div className="image-text-container">
-          {Data.map((item, index) => {
-            return (
-              <div
-                className={
-                  slideIndex === index + 1 ? "image-text-anime" : "image-text"
-                }
-                key={item.id}
-              >
-                <div className="text-div">
-                  <div className="animation-text-div">
-                    <h3>{item.type}</h3>
-                    <h1 style={{ margin: "5px 0" }}>{item.arrivals}</h1>
-                    <button
-                      onClick={() => HeaderNavigation(item.navigation_link)}
-                      className="Button"
-                    >
-                      {item.button_text}
+                                <div className="image-div">
+                                    <img
+                                        src={item.image}
+                                        className="men-image"
+                                        alt="men-images"
+                                    />
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+                {/* Sliding an image with text */}
+                {/* next / previous button icon */}
+                <div className="btn-slide">
+                    <button className="next-button" onClick={() => prevSlide()}>
+                        <AiOutlineLeft color="#000" size={20} />
                     </button>
-                  </div>
                 </div>
-
-                <div className="image-div">
-                  <img
-                    src={item.image}
-                    className="men-image"
-                    alt="men-images"
-                  />
+                <div className="btn-slide2">
+                    <button className="next-button" onClick={() => nextSlide()}>
+                        <AiOutlineRight color="#000" size={20} />
+                    </button>
                 </div>
-              </div>
-            );
-          })}
-        </div>
-        {/* Sliding an image with text */}
-        {/* next / previous button icon */}
-        <div className="btn-slide">
-          <button className="next-button" onClick={() => prevSlide()}>
-            <AiOutlineLeft color="#000" size={20} />
-          </button>
-        </div>
-        <div className="btn-slide2">
-          <button className="next-button" onClick={() => nextSlide()}>
-            <AiOutlineRight color="#000" size={20} />
-          </button>
-        </div>
-        {/* next / previous button icon */}
-        <div className="container-dots">
-          {Array.from({ length: Data.length }).map((item, index) => {
-            return (
-              <div
-                key={index}
-                onClick={() => moveDot(index + 1)}
-                className={slideIndex === index + 1 ? "dot active" : "dot"}
-              ></div>
-            );
-          })}
-        </div>
-      </div>
-      {/* header image slider */}
-      {/* Main Body part start here */}
-      <main style={{ position: "relation", padding: "30px 0 0 0" }}>
-        {/* Men section */}
-        <section className="section-style">
-          <div className="category-title">
-            <h1>Men Collection</h1>
-          </div>
-          <div className="men-initial-container">
-            {DemoCollection.map((item, index) => {
-              return item.category === "men" ? (
-                index < menFirstIndex + 6 ? (
-                  <div key={item.id} className="men-containers">
-                    <div className="men-container">
-                      <div className="image-icon">
-                        <img
-                          src={item.image}
-                          alt="image"
-                          className="men-image-style"
-                        />
-                        <div className="icon-style">
-                          <BsFillCartFill
-                            color="#487ab1"
-                            size={28}
-                            className="cart-icon"
-                            onClick={() => {
-                              AddToCartList(item.id);
-                            }}
-                          />
-                          <MdFavorite
-                            color="#487ab1"
-                            size={30}
-                            className="fav-icon"
-                            onClick={() => {
-                              AddToCartList(item.id);
-                            }}
-                          />
-                        </div>
-                      </div>
-
-                      <h3>{item.description}</h3>
-                      <p>Rating: {item.rating}</p>
-                      <p>Price: {item.price}</p>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                        }}
-                      >
-                        <Link
-                          to={`/shop/${item.id}`}
-                          className="Button shop-now-button"
-                        >
-                          Shop now
-                        </Link>
-                      </div>
+                {/* next / previous button icon */}
+                <div className="container-dots">
+                    {Array.from({ length: Data.length }).map((item, index) => {
+                        return (
+                            <div
+                                key={index}
+                                onClick={() => moveDot(index + 1)}
+                                className={
+                                    slideIndex === index + 1
+                                        ? "dot active"
+                                        : "dot"
+                                }
+                            ></div>
+                        );
+                    })}
+                </div>
+            </div>
+            {/* header image slider */}
+            {/* Main Body part start here */}
+            <main style={{ position: "relation", padding: "30px 0 0 0" }}>
+                {/* Men section */}
+                <section className="section-style">
+                    <div className="category-title">
+                        <h1>Men Collection</h1>
                     </div>
-                    {cart_error ? (
-                      item.id === cart_id ? (
-                        <p style={{ color: "red", marginBottom: "20px" }}>
-                          {cart_error}
-                        </p>
-                      ) : null
-                    ) : null}
-                    {loginError ? (
-                      <p style={{ color: "red", marginBottom: "20px" }}>
-                        {loginError}
-                      </p>
-                    ) : null}
-                  </div>
-                ) : null
-              ) : null;
-            })}
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <button onClick={NavigateToMen} className="Button more-button">
-              more items
-            </button>
-          </div>
-        </section>
-        {/* Men section */}
-        {/* Wo-Men section */}
-        <section className="section-style">
-          <div className="category-title">
-            <h1>Wo-men Collection</h1>
-          </div>
-          <div className="men-initial-container">
-            {DemoCollection.map((item, index) => {
-              return item.category === "wo-men" ? (
-                index < woMenFirstIndex + 6 ? (
-                  <div key={item.id} className="men-containers">
-                    <div className="men-container">
-                      <div className="image-icon">
-                        <img
-                          src={item.image}
-                          alt="image"
-                          className="men-image-style"
-                        />
-                        <div className="icon-style">
-                          <BsFillCartFill
-                            color="#487ab1"
-                            size={28}
-                            className="cart-icon"
-                            onClick={() => {
-                              AddToCartList(item.id);
-                            }}
-                          />
-                          <MdFavorite
-                            color="#487ab1"
-                            size={30}
-                            className="fav-icon"
-                            onClick={() => {
-                              AddToCartList(item.id);
-                            }}
-                          />
-                        </div>
-                      </div>
+                    <div className="men-initial-container">
+                        {DemoCollection.map((item, index) => {
+                            return item.category === "men" ? (
+                                index < menFirstIndex + 6 ? (
+                                    <div
+                                        key={item.id}
+                                        className="men-containers"
+                                    >
+                                        <div className="men-container">
+                                            <div className="image-icon">
+                                                <img
+                                                    src={item.image}
+                                                    alt="cloth-images"
+                                                    className="men-image-style"
+                                                />
+                                                <div className="icon-style">
+                                                    <BsFillCartFill
+                                                        color="#487ab1"
+                                                        size={28}
+                                                        className="cart-icon"
+                                                        onClick={() => {
+                                                            AddToCartList(
+                                                                item.id
+                                                            );
+                                                        }}
+                                                    />
+                                                    <MdFavorite
+                                                        color="#487ab1"
+                                                        size={30}
+                                                        className="fav-icon"
+                                                        onClick={() => {
+                                                            AddToCartList(
+                                                                item.id
+                                                            );
+                                                        }}
+                                                    />
+                                                </div>
+                                            </div>
 
-                      <h3>{item.description}</h3>
-                      <p>Rating: {item.rating}</p>
-                      <p>Price: {item.price}</p>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                        }}
-                      >
-                        <Link
-                          to={`/shop/${item.id}`}
-                          className="Button shop-now-button"
-                        >
-                          Shop now
-                        </Link>
-                      </div>
+                                            <h3>{item.description}</h3>
+                                            <p>Rating: {item.rating}</p>
+                                            <p>Price: {item.price}</p>
+                                            <div
+                                                style={{
+                                                    display: "flex",
+                                                    justifyContent: "center",
+                                                    alignItems: "center",
+                                                }}
+                                            >
+                                                <Link
+                                                    to={`/shop/${item.id}`}
+                                                    className="Button shop-now-button"
+                                                >
+                                                    Shop now
+                                                </Link>
+                                            </div>
+                                        </div>
+                                        {cart_error ? (
+                                            item.id === cart_id ? (
+                                                <p
+                                                    style={{
+                                                        color: "red",
+                                                        marginBottom: "20px",
+                                                    }}
+                                                >
+                                                    {cart_error}
+                                                </p>
+                                            ) : null
+                                        ) : null}
+                                        {loginError ? (
+                                            <p
+                                                style={{
+                                                    color: "red",
+                                                    marginBottom: "20px",
+                                                }}
+                                            >
+                                                {loginError}
+                                            </p>
+                                        ) : null}
+                                    </div>
+                                ) : null
+                            ) : null;
+                        })}
                     </div>
-                    {cart_error ? (
-                      item.id === cart_id ? (
-                        <p style={{ color: "red", marginBottom: "20px" }}>
-                          {cart_error}
-                        </p>
-                      ) : null
-                    ) : null}
-                    {loginError ? (
-                      <p style={{ color: "red", marginBottom: "20px" }}>
-                        {loginError}
-                      </p>
-                    ) : null}
-                  </div>
-                ) : null
-              ) : null;
-            })}
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <button onClick={NavigateToWoMen} className="Button more-button">
-              more items
-            </button>
-          </div>
-        </section>
-        {/* Wo-Men section */}
-        {/* Child section */}
-        <section className="section-style">
-          <div className="category-title">
-            <h1>Child Collection</h1>
-          </div>
-          <div className="men-initial-container">
-            {DemoCollection.map((item, index) => {
-              return item.category === "child" ? (
-                index < childFirstIndex + 6 ? (
-                  <div key={item.id} className="men-containers">
-                    <div className="men-container">
-                      <div className="image-icon">
-                        <img
-                          src={item.image}
-                          alt="image"
-                          className="men-image-style"
-                        />
-                        <div className="icon-style">
-                          <BsFillCartFill
-                            color="#487ab1"
-                            size={28}
-                            className="cart-icon"
-                            onClick={() => {
-                              AddToCartList(item.id);
-                            }}
-                          />
-                          <MdFavorite
-                            color="#487ab1"
-                            size={30}
-                            className="fav-icon"
-                            onClick={() => {
-                              AddToCartList(item.id);
-                            }}
-                          />
-                        </div>
-                      </div>
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                        }}
+                    >
+                        <button
+                            onClick={NavigateToMen}
+                            className="Button more-button"
+                        >
+                            more items
+                        </button>
+                    </div>
+                </section>
+                {/* Men section */}
+                {/* Wo-Men section */}
+                <section className="section-style">
+                    <div className="category-title">
+                        <h1>Wo-men Collection</h1>
+                    </div>
+                    <div className="men-initial-container">
+                        {DemoCollection.map((item, index) => {
+                            return item.category === "wo-men" ? (
+                                index < woMenFirstIndex + 6 ? (
+                                    <div
+                                        key={item.id}
+                                        className="men-containers"
+                                    >
+                                        <div className="men-container">
+                                            <div className="image-icon">
+                                                <img
+                                                    src={item.image}
+                                                    alt="cloth-images"
+                                                    className="men-image-style"
+                                                />
+                                                <div className="icon-style">
+                                                    <BsFillCartFill
+                                                        color="#487ab1"
+                                                        size={28}
+                                                        className="cart-icon"
+                                                        onClick={() => {
+                                                            AddToCartList(
+                                                                item.id
+                                                            );
+                                                        }}
+                                                    />
+                                                    <MdFavorite
+                                                        color="#487ab1"
+                                                        size={30}
+                                                        className="fav-icon"
+                                                        onClick={() => {
+                                                            AddToCartList(
+                                                                item.id
+                                                            );
+                                                        }}
+                                                    />
+                                                </div>
+                                            </div>
 
-                      <h3>{item.description}</h3>
-                      <p>Rating: {item.rating}</p>
-                      <p>Price: {item.price}</p>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                        }}
-                      >
-                        <Link
-                          to={`/shop/${item.id}`}
-                          className="Button shop-now-button"
-                        >
-                          Shop now
-                        </Link>
-                      </div>
+                                            <h3>{item.description}</h3>
+                                            <p>Rating: {item.rating}</p>
+                                            <p>Price: {item.price}</p>
+                                            <div
+                                                style={{
+                                                    display: "flex",
+                                                    justifyContent: "center",
+                                                    alignItems: "center",
+                                                }}
+                                            >
+                                                <Link
+                                                    to={`/shop/${item.id}`}
+                                                    className="Button shop-now-button"
+                                                >
+                                                    Shop now
+                                                </Link>
+                                            </div>
+                                        </div>
+                                        {cart_error ? (
+                                            item.id === cart_id ? (
+                                                <p
+                                                    style={{
+                                                        color: "red",
+                                                        marginBottom: "20px",
+                                                    }}
+                                                >
+                                                    {cart_error}
+                                                </p>
+                                            ) : null
+                                        ) : null}
+                                        {loginError ? (
+                                            <p
+                                                style={{
+                                                    color: "red",
+                                                    marginBottom: "20px",
+                                                }}
+                                            >
+                                                {loginError}
+                                            </p>
+                                        ) : null}
+                                    </div>
+                                ) : null
+                            ) : null;
+                        })}
                     </div>
-                    {cart_error ? (
-                      item.id === cart_id ? (
-                        <p style={{ color: "red", marginBottom: "20px" }}>
-                          {cart_error}
-                        </p>
-                      ) : null
-                    ) : null}
-                    {loginError ? (
-                      <p style={{ color: "red", marginBottom: "20px" }}>
-                        {loginError}
-                      </p>
-                    ) : null}
-                  </div>
-                ) : null
-              ) : null;
-            })}
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <button onClick={NavigateToChild} className="Button more-button">
-              more items
-            </button>
-          </div>
-        </section>
-        {/* Child section */}
-      </main>
-      {/* Main Body part start here */}
-    </div>
-  );
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                        }}
+                    >
+                        <button
+                            onClick={NavigateToWoMen}
+                            className="Button more-button"
+                        >
+                            more items
+                        </button>
+                    </div>
+                </section>
+                {/* Wo-Men section */}
+                {/* Child section */}
+                <section className="section-style">
+                    <div className="category-title">
+                        <h1>Child Collection</h1>
+                    </div>
+                    <div className="men-initial-container">
+                        {DemoCollection.map((item, index) => {
+                            return item.category === "child" ? (
+                                index < childFirstIndex + 6 ? (
+                                    <div
+                                        key={item.id}
+                                        className="men-containers"
+                                    >
+                                        <div className="men-container">
+                                            <div className="image-icon">
+                                                <img
+                                                    src={item.image}
+                                                    alt="cloth-images"
+                                                    className="men-image-style"
+                                                />
+                                                <div className="icon-style">
+                                                    <BsFillCartFill
+                                                        color="#487ab1"
+                                                        size={28}
+                                                        className="cart-icon"
+                                                        onClick={() => {
+                                                            AddToCartList(
+                                                                item.id
+                                                            );
+                                                        }}
+                                                    />
+                                                    <MdFavorite
+                                                        color="#487ab1"
+                                                        size={30}
+                                                        className="fav-icon"
+                                                        onClick={() => {
+                                                            AddToCartList(
+                                                                item.id
+                                                            );
+                                                        }}
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            <h3>{item.description}</h3>
+                                            <p>Rating: {item.rating}</p>
+                                            <p>Price: {item.price}</p>
+                                            <div
+                                                style={{
+                                                    display: "flex",
+                                                    justifyContent: "center",
+                                                    alignItems: "center",
+                                                }}
+                                            >
+                                                <Link
+                                                    to={`/shop/${item.id}`}
+                                                    className="Button shop-now-button"
+                                                >
+                                                    Shop now
+                                                </Link>
+                                            </div>
+                                        </div>
+                                        {cart_error ? (
+                                            item.id === cart_id ? (
+                                                <p
+                                                    style={{
+                                                        color: "red",
+                                                        marginBottom: "20px",
+                                                    }}
+                                                >
+                                                    {cart_error}
+                                                </p>
+                                            ) : null
+                                        ) : null}
+                                        {loginError ? (
+                                            <p
+                                                style={{
+                                                    color: "red",
+                                                    marginBottom: "20px",
+                                                }}
+                                            >
+                                                {loginError}
+                                            </p>
+                                        ) : null}
+                                    </div>
+                                ) : null
+                            ) : null;
+                        })}
+                    </div>
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                        }}
+                    >
+                        <button
+                            onClick={NavigateToChild}
+                            className="Button more-button"
+                        >
+                            more items
+                        </button>
+                    </div>
+                </section>
+                {/* Child section */}
+            </main>
+            {/* Main Body part start here */}
+        </div>
+    );
 };
 
 export default Body;

@@ -18,10 +18,11 @@ import { GoPerson } from "react-icons/go";
 import { RiWomenLine } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
 import { Context as AuthContext } from "../../context/AuthContext";
-//bring outside click
-// import {DetectOutsideClick} from '../../component/DetectOutsideClick';
+// import { useLocation } from "react-router-dom";
 
 const Header = ({ active }) => {
+    // const { pathname } = useLocation();
+
     const {
         state: { token },
         SearchedInputValue,
@@ -33,12 +34,13 @@ const Header = ({ active }) => {
     const navigate = useNavigate();
     // define state for li text color
     const [drawerVisible, setDrawerVisible] = useState(false);
-    const [liTextColor, setLiTextColor] = useState(1);
+    const [liTextColor] = useState(1);
     const [searchValue, setSearchValue] = useState("");
     // Li Text Color function
     // const LiTextColorFunction = (value) => {
     //     setLiTextColor(value);
     // };
+    console.log(window.pathname, "path-name");
 
     const SearchFunction = (event) => {
         setSearchValue(event.target.value);
@@ -124,25 +126,7 @@ const Header = ({ active }) => {
                                     }}
                                 >
                                     <Link to="/">Home</Link>
-                                    {/* <AiFillCaretDown
-                  color={liTextColor === 1 ? "#888dc4" : "#6a6867"}
-                /> */}
                                 </div>
-
-                                {/* <ul className="sub-menu">
-                <li>
-                  <Link to="/">Sub Item 1</Link>
-                </li>
-                <li>
-                  <Link to="/">Sub Item 2</Link>
-                </li>
-                <li>
-                  <Link to="/">Sub Item 3</Link>
-                </li>
-                <li>
-                  <Link to="/">Sub Item 4</Link>
-                </li>
-              </ul> */}
                             </li>
                             <li className="sub-menu-parent">
                                 <div
@@ -172,24 +156,6 @@ const Header = ({ active }) => {
                                     </li>
                                 </ul>
                             </li>
-                            {/* <li className="sub-menu-parent">
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  <Link to="/">
-                    Features
-                  </Link>
-                  <AiFillCaretDown
-                    color={liTextColor === 3 ? "#888dc4" : "#6a6867"}
-                  />
-                </div>
-                <ul className="sub-menu">
-                  <li>
-                    <Link to="/">Sub Item 1</Link>
-                  </li>
-                  <li>
-                    <Link to="/">Sub Item 2</Link>
-                  </li>
-                </ul>
-              </li> */}
                             <li className="sub-menu-parent">
                                 <div
                                     style={{
@@ -197,10 +163,7 @@ const Header = ({ active }) => {
                                         alignItems: "center",
                                     }}
                                 >
-                                    <Link to="/blog">Blog</Link>
-                                    {/* <AiFillCaretDown
-                    color={liTextColor === 4 ? "#888dc4" : "#6a6867"}
-                  /> */}
+                                    <Link to="/blog">Blog</Link>{" "}
                                 </div>
                             </li>
                             <li className="sub-menu-parent">
@@ -211,9 +174,6 @@ const Header = ({ active }) => {
                                     }}
                                 >
                                     <Link to="/about">About</Link>
-                                    {/* <AiFillCaretDown
-                    color={liTextColor == 5 ? "#888dc4" : "#6a6867"}
-                  /> */}
                                 </div>
                             </li>
                             <li className="sub-menu-parent">
@@ -224,9 +184,6 @@ const Header = ({ active }) => {
                                     }}
                                 >
                                     <Link to="/contact">Contact</Link>
-                                    {/* <AiFillCaretDown
-                    color={liTextColor === 6 ? "#888dc4" : "#6a6867"}
-                  /> */}
                                 </div>
                             </li>
                         </ul>
