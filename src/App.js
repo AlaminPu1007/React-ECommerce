@@ -33,13 +33,10 @@ import { Context as AuthContext } from "./context/AuthContext";
 import PrivateRoute from "./component/PrivateRoute";
 
 const App = () => {
-    const {
-        state: { token },
-        AutomaticSignIn,
-    } = useContext(AuthContext);
+    const { AutomaticSignIn } = useContext(AuthContext);
     useEffect(() => {
         AutomaticSignIn();
-    }, []);
+    }, [AutomaticSignIn]);
     return (
         <div className="App">
             <ScrollToTop />

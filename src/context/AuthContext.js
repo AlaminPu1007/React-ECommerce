@@ -233,7 +233,7 @@ const DeleteCartListContext = (dispatch) => {
       },
     })
       .then((response) => {
-        if (response.data == "your product has been deleted successfully") {
+        if (response.data === "your product has been deleted successfully") {
           navigate("/");
         } else {
           alert("Something went wrong!");
