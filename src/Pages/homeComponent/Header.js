@@ -36,11 +36,6 @@ const Header = ({ active }) => {
     const [drawerVisible, setDrawerVisible] = useState(false);
     const [liTextColor] = useState(1);
     const [searchValue, setSearchValue] = useState("");
-    // Li Text Color function
-    // const LiTextColorFunction = (value) => {
-    //     setLiTextColor(value);
-    // };
-    console.log(window.pathname, "path-name");
 
     const SearchFunction = (event) => {
         setSearchValue(event.target.value);
